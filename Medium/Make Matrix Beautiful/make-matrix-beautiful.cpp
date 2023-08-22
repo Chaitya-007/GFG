@@ -13,33 +13,33 @@ class Solution
     int findMinOpeartion(vector<vector<int> > matrix, int n)
     {
         // code here 
-          int total = 0;
+          int sum_of_matrix = 0;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                total = total + matrix[i][j];
+                sum_of_matrix = sum_of_matrix + matrix[i][j];
             }
         }
     
-        int row_max_sum = 0;
-        int cloumns_max_sum = 0;
+        int rows_max_total = 0;
+        int cloumns_max_total = 0;
     
         for (int i = 0; i < n; i++) {
             int a = 0;
             for (int j = 0; j < n; j++) {
                 a = a + matrix[i][j];
             }
-            row_max_sum = max(row_max_sum, a);
+            rows_max_total = max(rows_max_total, a);
     
             int b = 0;
             for (int j = 0; j < n; j++) {
                 b = b + matrix[j][i];
             }
-            cloumns_max_sum = max(cloumns_max_sum, b);
+            cloumns_max_total = max(cloumns_max_total, b);
         }
     
-        int maxVal = max(cloumns_max_sum, row_max_sum);
+        int maxVal = max(cloumns_max_total, rows_max_total);
     
-        return maxVal * n - total;
+        return maxVal * n - sum_of_matrix;
     } 
 };
 
