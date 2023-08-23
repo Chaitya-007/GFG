@@ -61,7 +61,7 @@ class Solution
             for(int j=0; j<m; j++){
                 
                 if(grid[i][j]==word.charAt(0)){
-                    int result = 0;
+                    int res = 0;
                     for(int k=0; k<8; k++){
                         int r = i+row[k];
                         int c = j+col[k];
@@ -71,14 +71,14 @@ class Solution
                             if(isSafe(r,c,1,grid,word,n,m)){
                                 count = solve(r,c,2,grid,word,n,m,row[k],col[k]);
                                 if(count==1){
-                                    result = 1;
+                                    res = 1;
                                     break;
                                 }
                             }
                         }
-                        else result = 1;
+                        else res = 1;
                     }
-                    if(result==1){
+                    if(res==1){
                         ArrayList<Integer> abc = new ArrayList<>();
                         abc.add(i);
                         abc.add(j);
