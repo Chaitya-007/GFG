@@ -29,8 +29,8 @@ class Solution
         //code here.
          int n1=s1.length();
         int n2 = s2.length();
-        int c = s1.charAt(0)=='-'?-1:0;
-        int d = s2.charAt(0)=='-'?-1:0;
+        int aaaa = s1.charAt(0)=='-'?-1:0;
+        int bbbb = s2.charAt(0)=='-'?-1:0;
         
         int arr[] =  new int[n1+n2];
         for(int i=n1-1; i>=0; i--){
@@ -61,7 +61,7 @@ class Solution
             if(i<n1+n2) sb.append(arr[i]);
         }
         String str = sb.toString();
-        if(c<0 && d>=0 || c>=0 && d<0) str = "-"+str;
+        if(aaaa<0 && bbbb>=0 || aaaa>=0 && bbbb<0) str = "-"+str;
         if(str.length()==0) return "0";
         return str;
     }
