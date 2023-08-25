@@ -13,10 +13,11 @@ public:
 	int isPalindrome(string S)
 	{
 	    // Your code goes here
-	    string temp = S;
+	    string revstring = S;
+	    
 	    reverse(S.begin(),S.end());
 	    
-	    if(temp == S)
+	    if(revstring == S)
 	    {
 	        return 1;
 	    }
