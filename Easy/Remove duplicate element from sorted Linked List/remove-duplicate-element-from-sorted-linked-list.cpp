@@ -70,30 +70,20 @@ Node *removeDuplicates(Node *head)
 {
  // your code goes here
  struct Node *p = head;
- struct Node *t;
- int val;
+ struct Node *t = NULL;
  
- 
-    while(p != NULL)
-    {
-        if(p->next != NULL)
-        {
-          if(p->data == (p->next)->data)
-        {
-            t=p->next;
-            p->next = t->next;
-            t->next = NULL;
-        }  
-        else
-        {
-            p = p->next;
-        }
-        }
-        else
-        {
-            break;
-        }
-        
-    }
-    return head;
+ while(p->next != NULL)
+ {
+     if(p->data == (p->next)->data)
+     {
+         t=p->next;
+         p->next = t->next;
+         t->next = NULL;
+     }
+     else
+     {
+         p=p->next;
+     }
+ }
+ return head;
 }
