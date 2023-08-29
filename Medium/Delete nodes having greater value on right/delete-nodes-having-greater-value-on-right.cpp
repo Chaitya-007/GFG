@@ -50,35 +50,35 @@ class Solution
     {
         // your code goes here
         
-        // MY CODE IS IN SUBMISSION
-            head = rev(head);
-            Node* p = head;
+        head = rev(head);
+            Node* q = head;
             
-            while (p != nullptr && p->next != nullptr) {
-                if (p->data > p->next->data) {
-                    p->next = p->next->next;
+            while (q != nullptr && q->next != nullptr) {
+                if (q->data > q->next->data) {
+                    q->next = q->next->next;
                 } else {
-                    p = p->next;
+                    q = q->next;
                 }
             }
             
             return rev(head);
     }
         
-        Node* rev(Node* head) 
-        {
-        Node* previous = nullptr;
+    Node* rev(Node* head) {
+        Node* prevs = nullptr;
         Node* next = nullptr;
         
         while (head != nullptr) {
             next = head->next;
-            head->next = previous;
-            previous = head;
+            head->next = prevs;
+            prevs = head;
             head = next;
         }
         
-        return previous;
-        }
+        return prevs;
+    }
+
+    
     
 };
    
