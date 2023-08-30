@@ -88,27 +88,23 @@ Node* deleteNode(Node *head,int x)
 {
     //Your code here
     struct Node *p = head;
-    struct Node *t;
-    
-    
-    
+    struct Node *temp = NULL;
     
     if(x == 1)
     {
-        t = p;
+        temp = p;
         p = p->next;
         head = p;
-        t->next = NULL;
+        temp->next = NULL;
     }
     else
     {
-        
         for(int i = 1; i < x ; i++)
         {
-            t = p;
+            temp = p;
             p = p->next;
         }
-        t-> next = p->next;
+        temp->next = p->next;
     }
     return head;
 }
