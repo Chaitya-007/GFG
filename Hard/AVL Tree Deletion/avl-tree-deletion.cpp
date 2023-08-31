@@ -183,23 +183,22 @@ struct Node
 };
 
 */
-
 int height(Node *root){
     if(!root)
         return 0;
-    int left_Height = height(root->left);
-    int right_Height = height(root->right);
-    return (left_Height>right_Height?left_Height:right_Height)+1;
+    int leftHeight = height(root->left);
+    int rightHeight = height(root->right);
+    return (leftHeight>rightHeight?leftHeight:rightHeight)+1;
 }
-int get_Balance(Node *root){
+int getBal(Node *root){
     if(!root)
         return 0;
-    int left_Height = height(root->left);
-    int right_Height = height(root->right);
-    return right_Height-left_Height;
+    int leftHeight = height(root->left);
+    int rightHeight = height(root->right);
+    return rightHeight-leftHeight;
 }
 
-Node *left_Rotation(Node *x){
+Node *left_Rot(Node *x){
     Node *y = x->right;
     Node *T = y->left;
     x->right = T;
@@ -207,7 +206,7 @@ Node *left_Rotation(Node *x){
     return y;
 }
 
-Node *right_Rotation(Node *x){
+Node *right_Rot(Node *x){
     Node *y = x->left;
     Node *T = y->right;
     x->left = T;
@@ -223,7 +222,6 @@ int findMax(Node *head){
     }
     return head->data;
 }
-
 
 Node* deleteNode(Node* root, int data)
 {
@@ -248,25 +246,25 @@ Node* deleteNode(Node* root, int data)
                     root = temp;
                 }
             } else {
-                int repo = findMax(root->right);
-                root->data = repo;
-                root->right = deleteNode(root->right, repo);
+                int rep = findMax(root->right);
+                root->data = rep;
+                root->right = deleteNode(root->right, rep);
             }
         }
         if(!root)
             return root;
-        int bfff = get_Balance(root);
-          if(bfff>1 and get_Balance(root->right)>=0)
-                return left_Rotation(root);
-          else if(bfff<-1 and get_Balance(root->left)<=0)
-                return right_Rotation(root);
-          else if(bfff>1 and get_Balance(root->right)<0){
-                root->right = right_Rotation(root->right);
-                return left_Rotation(root);
+        int bffff = getBal(root);
+          if(bffff>1 and getBal(root->right)>=0)
+                return left_Rot(root);
+          else if(bffff<-1 and getBal(root->left)<=0)
+                return right_Rot(root);
+          else if(bffff>1 and getBal(root->right)<0){
+                root->right = right_Rot(root->right);
+                return left_Rot(root);
           }
-          else if(bfff<-1 and get_Balance(root->left)>0){
-                root->left = left_Rotation(root->left);
-                return right_Rotation(root);
+          else if(bffff<-1 and getBal(root->left)>0){
+                root->left = left_Rot(root->left);
+                return right_Rot(root);
           }
     return root;
 }
