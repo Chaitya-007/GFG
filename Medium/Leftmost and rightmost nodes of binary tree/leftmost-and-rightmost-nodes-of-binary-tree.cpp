@@ -130,25 +130,23 @@ struct Node
      struct Node* right;
 };
 */
-
 void printCorner(Node *root)
 {
 
 // Your code goes here
- queue<Node*> tree;
-    tree.push(root);
+ queue<Node*> node;
+    node.push(root);
     
-    while (!tree.empty()) {
-        int n = tree.size();
+    while (!node.empty()) {
+        int n = node.size();
         
         for (int i = 0; i < n; ++i) {
-            Node* curr = tree.front();
-            tree.pop();
+            Node* curr = node.front();
+            node.pop();
             if (i == 0 || i == n - 1) std::cout << curr->data << " ";
-            if (curr->left != nullptr) tree.push(curr->left);
-            if (curr->right != nullptr) tree.push(curr->right);
+            if (curr->left != nullptr) node.push(curr->left);
+            if (curr->right != nullptr) node.push(curr->right);
         }
     }
-
 
 }
