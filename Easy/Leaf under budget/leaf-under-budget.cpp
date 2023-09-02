@@ -117,8 +117,8 @@ public:
     int getCount(Node *root, int k)
     {
         //code here
-        int ans=0;
-        int total=0;
+        int result=0;
+        int sum=0;
         queue<pair<Node*,int>>q;
         q.push({root,1});
         while(!q.empty())        {
@@ -128,16 +128,16 @@ public:
             
             if(temp->left==NULL && temp->right==NULL)
             {
-                ans++;
-                total += lvl;
-                if(total==k)return ans;
-                if(total>k)return ans-1; 
+                result++;
+                sum += lvl;
+                if(sum==k)return result;
+                if(sum>k)return result-1; 
             }
             if(temp->left)q.push({temp->left,lvl+1});
             if(temp->right)q.push({temp->right,lvl+1});
         }
 
-        return ans;
+        return result;
     }
 };
 
