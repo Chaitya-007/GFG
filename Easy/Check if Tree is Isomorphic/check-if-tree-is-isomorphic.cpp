@@ -96,13 +96,15 @@ class Solution{
     bool isIsomorphic(Node *root1,Node *root2)
     {
     //add code here.
-     if(!root1 && !root2)
-        return 1;
+     if(!root1 && !root2){
+        return true;
+    }
     
-        if(!root1 || !root2 || root1->data!=root2->data)
-        return 0;
-        
-        return (isIsomorphic(root1->left,root2->right) && isIsomorphic(root1->right,root2->left)) || (isIsomorphic(root1->left,root2->left) && isIsomorphic(root1->right,root2->right));
+    if(!root1|| !root2 || root1->data != root2->data){
+        return false;
+    }
+    
+    return (isIsomorphic(root1->left,root2->left))&&(isIsomorphic(root1->right,root2->right))||(isIsomorphic(root1->left,root2->right))&&(isIsomorphic(root1->right,root2->left));
     }
 };
 
