@@ -12,8 +12,8 @@ public:
     vector<vector<char>> fill(int n, int m, vector<vector<char>> mat)
     {
         // code here
-         std::vector<int> r = {-1, 0, 1, 0};
-        std::vector<int> c = {0, 1, 0, -1};
+          std::vector<int> rowssss = {-1, 0, 1, 0};
+        std::vector<int> columnsss = {0, 1, 0, -1};
         
         // Traverse the border and mark connected 'O' cells as '1'
         for (int i = 0; i < n; i++) {
@@ -43,10 +43,10 @@ public:
             return;
         }
         mat[i][j] = '1'; // Mark as visited
-        std::vector<int> r = {-1, 0, 1, 0};
-        std::vector<int> c = {0, 1, 0, -1};
+        std::vector<int> rowssss = {-1, 0, 1, 0};
+        std::vector<int> columnsss = {0, 1, 0, -1};
         for (int k = 0; k < 4; k++) {
-            makeOne(i + r[k], j + c[k], n, m, mat);
+            makeOne(i + rowssss[k], j + columnsss[k], n, m, mat);
         }
     }
 };
