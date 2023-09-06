@@ -38,28 +38,28 @@ class Solution
     public int findMotherVertex(int V, ArrayList<ArrayList<Integer>>adj)
     {
         // Code here
-         int Array[] = new int[V];
-        int last_node = 0;
+         int A[] = new int[V];
+        int Last_node = 0;
         
         for(int i=0; i<V; i++){
-            if(Array[i]==0){
-                dfs(adj,i,Array);
-                last_node = i;
+            if(A[i]==0){
+                dfs(adj,i,A);
+                Last_node = i;
             }
         }
-        Arrays.fill(Array,0);
-        dfs(adj,last_node,Array);
-        for(int x : Array){
+        Arrays.fill(A,0);
+        dfs(adj,Last_node,A);
+        for(int x : A){
             if(x==0) return -1;
         }
-        return last_node;
+        return Last_node;
     }
     
-     void dfs(ArrayList<ArrayList<Integer>> adj, int k, int[] Array){
-        Array[k] = 1;
+    void dfs(ArrayList<ArrayList<Integer>> adj, int k, int[] arr){
+        arr[k] = 1;
         for(int x : adj.get(k)){
-            if(Array[x]==0){
-                dfs(adj,x,Array);
+            if(arr[x]==0){
+                dfs(adj,x,arr);
             }
         }
     }
