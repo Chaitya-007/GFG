@@ -37,13 +37,13 @@ class Solution {
     int minimumMultiplications(int[] arr, int start, int end) {
 
         // Your code here
-         if(start==end) return 0;
-        Queue<Pair> queue = new LinkedList<>();
-        int visited[] = new int[100000];
-        queue.add(new Pair(0,start));
+        if(start==end) return 0;
+        Queue<Pair> que = new LinkedList<>();
+        int vis_ited[] = new int[100000];
+        que.add(new Pair(0,start));
         
-        while(queue.size()>0){
-            Pair p = queue.remove();
+        while(que.size()>0){
+            Pair p = que.remove();
             int steps = p.a;
             int num = p.b;
             
@@ -51,9 +51,9 @@ class Solution {
                 long temp = arr[i]*num % 100000;
                 int ns = (int)temp;
                 if(ns==end) return steps+1;
-                if(visited[ns]==0){
-                    queue.add(new Pair(steps+1,ns));
-                    visited[ns] = 1;
+                if(vis_ited[ns]==0){
+                    que.add(new Pair(steps+1,ns));
+                    vis_ited[ns] = 1;
                 }
             }
         }
