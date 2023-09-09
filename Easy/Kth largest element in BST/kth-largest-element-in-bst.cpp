@@ -98,26 +98,25 @@ class Solution
 {
     public:
     
-     void ans(Node *root,vector<int> &result)
+    void answer(Node *root,vector<int> &solution)
     {
         if(!root->right && !root->left){
-        result.push_back(root->data);
+        solution.push_back(root->data);
         return ;
         }
         if(root->right)
-        ans(root->right,result);
-        result.push_back(root->data);
+        answer(root->right,solution);
+        solution.push_back(root->data);
         if(root->left)
-        ans(root->left,result);
+        answer(root->left,solution);
         
     }
-    
     
     int kthLargest(Node *root, int K)
     {
         //Your code here
         vector<int> res;
-       ans(root,res);
+       answer(root,res);
        return res[K-1];
     }
 };
