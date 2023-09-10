@@ -63,15 +63,16 @@ void inorder(struct Node *root) {
 
 // } Driver Code Ends
 // User function Template for C
-typedef struct Node node;
+ typedef struct Node node;
 
 void insert_key(struct Node *root, int key) {
     // your code here
-    node* ptr = NULL;
+   
+            node* var = NULL;
             
             while(root)
             {
-                ptr = root;
+                var = root;
                 
                 if(root->data == key)
                     return;
@@ -81,15 +82,16 @@ void insert_key(struct Node *root, int key) {
                 
             }
             
-            node* temporary = (node *)malloc(sizeof(node));
-            temporary->left = NULL;
-            temporary->right = NULL;
-            temporary->data = key;
+            node* pointer_temp = (node *)malloc(sizeof(node));
+            pointer_temp->left = NULL;
+            pointer_temp->right = NULL;
+            pointer_temp->data = key;
             
-            if(key < ptr->data)
-                ptr->left = temporary;
+            if(key < var->data)
+                var->left = pointer_temp;
             else
-                ptr->right = temporary;
+                var->right = pointer_temp;
+
 }
 
 //{ Driver Code Starts.
