@@ -37,9 +37,9 @@ class Solution
     public static boolean isLucky(int n)
     {
         // Your code here
-         for(int k=2; k<=n; k++){
-            if(n%k==0) return false;
-            n = n-n/k;
+        for(int t=2; t<=n; t++){
+            if(n%t==0) return false;
+            n = n-n/t;
         }
         return true;
     }
