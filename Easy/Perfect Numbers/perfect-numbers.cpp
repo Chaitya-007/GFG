@@ -7,22 +7,22 @@ class Solution {
   public:
     int isPerfectNumber(long long N) {
         // code here
-         if(N==1)
+        if(N==1)
         return 0;
-        long long sum=1;
-        for(long long i=2;i*i<=N;i++)
+        
+        long long TOTAL=1;
+        for(long long K=2;K*K<=N;K++)
         {
-            if(N%i==0)
+            if(N%K==0)
             {
-                sum+=i;
-                if(N/i!=i)
-                sum+=N/i;
+                TOTAL+=K;
+                if(N/K!=K)
+                TOTAL+=N/K;
             }
         }
-        if(sum==N)
+        if(TOTAL==N)
         return 1;
         return 0;
-    
     }
 };
 
