@@ -6,29 +6,29 @@ using namespace std;
 class Solution{
 
 	public:
-	int perfectSum(int arr[], int n, int total)
+	int perfectSum(int arr[], int n, int sum)
 	{
         // Your code goes here
-         const int modulo = 1e9 + 7;
+         const int modu = 1e9 + 7;
        
- vector<vector<int>> dynamic_programming(n + 1, vector<int>(total + 1, 0));
+ vector<vector<int>> dyn_prog(n + 1, vector<int>(sum + 1, 0));
  
     // Initialize the dp array
-    dynamic_programming[0][0] = 1;
-    for (int j = 1; j <= total; j++)
-        dynamic_programming[0][j] = 0;
+    dyn_prog[0][0] = 1;
+    for (int j = 1; j <= sum; j++)
+        dyn_prog[0][j] = 0;
  
     // Fill the dp array
     for (int i = 1; i <= n; i++) {
-        for (int j = 0; j <= total; j++) {
+        for (int j = 0; j <= sum; j++) {
             if (arr[i - 1] <= j)
-                dynamic_programming[i][j] = (dynamic_programming[i - 1][j] + dynamic_programming[i - 1][j - arr[i - 1]]) % modulo;
+                dyn_prog[i][j] = (dyn_prog[i - 1][j] + dyn_prog[i - 1][j - arr[i - 1]]) % modu;
             else
-                dynamic_programming[i][j] = dynamic_programming[i - 1][j];
+                dyn_prog[i][j] = dyn_prog[i - 1][j];
         }
     }
  
-    return dynamic_programming[n][total];
+    return dyn_prog[n][sum];
         
 	}
 	  
