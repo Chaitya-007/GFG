@@ -12,16 +12,16 @@ public:
     int equalPartition(int N, int arr[])
     {
         // code here
-         int total = 0;
+        int get_total=0;
         for(int i=0;i<N;i++)
-        total+=arr[i];
-        if(total%2!=0)
+        get_total+=arr[i];
+        if(get_total%2!=0)
         return 0;
-        vector<int>dp(total+1,0);
+        vector<int>dp(get_total+1,0);
         dp[0]=1;
         for(int i=1;i<=N;i++)
         {
-            for(int j=total/2;j>=arr[i-1];j--)
+            for(int j=get_total/2;j>=arr[i-1];j--)
             {
               if(arr[i-1]<=j)
                {
@@ -29,7 +29,7 @@ public:
                }
             }
         }
-        return dp[total/2];
+        return dp[get_total/2];
     }
 };
 
