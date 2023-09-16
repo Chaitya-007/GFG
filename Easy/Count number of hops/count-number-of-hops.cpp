@@ -12,28 +12,28 @@ class Solution
     {
         
         // your code here
-          const long long MODULOS = 1000000007;
+        const long long modulos = 1000000007;
         // your code here
         if (n == 0 || n == 1) return 1;
         if (n == 2) return 2;
     
         // Initialize the only three variables to store results of the last three steps
-        long long STEP_3 = 2, STEP_2 = 1, STEP_1 = 1;
+        long long step_3 = 2, step_2 = 1, step_1 = 1;
     
         // Current step value
-        long long current_POSITION = 0;
+        long long now_position = 0;
     
         for (int i = 3; i <= n; i++) {
             // Calculate current ways
-            current_POSITION = (STEP_1 + STEP_2 + STEP_3) % MODULOS;
+            now_position = (step_1 + step_2 + step_3) % modulos;
     
             // Update for next iteration
-            STEP_1 = STEP_2;
-            STEP_2 = STEP_3;
-            STEP_3 = current_POSITION;
+            step_1 = step_2;
+            step_2 = step_3;
+            step_3 = now_position;
         }
         
-        return current_POSITION;
+        return now_position;
         
     }
 };
