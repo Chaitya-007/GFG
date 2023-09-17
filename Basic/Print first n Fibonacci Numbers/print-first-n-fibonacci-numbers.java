@@ -42,7 +42,7 @@ class Solution
     public static long[] printFibb(int n) 
     {
         //Your code here
-         long array[] = new long[n];
+        long array_of_numbers[] = new long[n];
 
         for(int i=0;i<n;i++)
 
@@ -50,14 +50,14 @@ class Solution
 
             if(i<2)
 
-              array[i]=1;
+              array_of_numbers[i]=1;
 
             else 
 
-              array[i]=array[i-1]+array[i-2];
+              array_of_numbers[i]=array_of_numbers[i-1]+array_of_numbers[i-2];
 
         }
 
-        return array;
+        return array_of_numbers;
     }
 }
