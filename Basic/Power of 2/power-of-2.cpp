@@ -14,38 +14,11 @@ class Solution{
     bool isPowerofTwo(long long number){
         
         // Your code here    
-        
-        // int x = 2;
-        
-        // if(n == 0)
-        // {
-        //     return 0;
-        // }
-        
-        // if(n == 1)
-        // {
-        //     return 1;
-        // }
-        
-        // while(x <= n)
-        // {
-        //     if(n%x == 0)
-        //     {
-        //         x = x*2;
-        //     }
-        //     else
-        //     {
-        //         return 0;
-        //     }
-        // }
-        // return 1;
-        
-          if(number==0){
+        if(number==0){
           return false; 
        } 
        
        return ((number&(number-1))==0);
-        
         
     }
 };
