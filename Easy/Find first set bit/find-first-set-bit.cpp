@@ -16,12 +16,12 @@ class Solution
     unsigned int getFirstSetBit(int n)
     {
         // Your code here
-         unsigned int xerox = 1;
+        unsigned int answer = 1;
         if(n == 0) return 0;
         while(n > 0)
         {
             
-            if(n%2 == 0) xerox++;
+            if(n%2 == 0) answer++;
             else
             {
                 break;
@@ -29,7 +29,7 @@ class Solution
             n = n/2;
         }
         
-        return xerox;
+        return answer;
     }
 };
 
