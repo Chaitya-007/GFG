@@ -6,17 +6,17 @@ using namespace std;
 class Solution
 {
   public:
-        vector <int> rotate (int n, int dIMB)
+        vector <int> rotate (int n, int due)
         {
             //code here.
-              int MASK = (1 << 16) - 1;
-        dIMB = dIMB % 16;
+            int MASK = (1 << 16) - 1;
+        due = due % 16;
         
-        vector<int> PRINT(2);
-        PRINT[0] = (n << dIMB | n >> (16 - dIMB)) & MASK;
-        PRINT[1] = (n >> dIMB | n << (16 - dIMB)) & MASK;
+        vector<int> get(2);
+        get[0] = (n << due | n >> (16 - due)) & MASK;
+        get[1] = (n >> due | n << (16 - due)) & MASK;
         
-        return PRINT;
+        return get;
         }
 };
 
