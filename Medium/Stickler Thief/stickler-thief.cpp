@@ -11,23 +11,7 @@ class Solution
     int FindMaxSum(int arr[], int n)
     {
         // Your code here
-        // int sum1 = 0;
-        // int sum2 = 0;
-        // for(int i = 0; i < n; i = i + 2)
-        // {
-        //     sum1 = sum1 + arr[i];
-        // }
-        // for(int i = 1; i < n; i = i + 2)
-        // {
-        //     sum2 = sum2 + arr[i];
-        // }
-        // if(sum1 > sum2)
-        // {
-        //     return sum1;
-        // }
-        // return sum2;
-        
-         if (n == 0) {
+        if (n == 0) {
         return 0;
     }
 
