@@ -12,9 +12,17 @@ class Solution
         vector<int>vec;
         for(int i = 0; i < n ; i++)
         {
-            if(arr[i] == x)
+            if(arr[i] <= x)
             {
-                vec.emplace_back(i);
+                if(arr[i] == x)
+                {
+                   vec.emplace_back(i); 
+                }
+                
+            }
+            else
+            {
+                break;
             }
         }
         if(vec.empty())
