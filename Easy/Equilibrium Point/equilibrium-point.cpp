@@ -12,8 +12,8 @@ class Solution{
     int equilibriumPoint(long long a[], int n) {
     
         // Your code here
-        long long sum_prev = a[0];
-        long long total = 0;
+        long long before_sum = a[0];
+        long long get_total = 0;
         
         if(n == 1)
         {
@@ -28,21 +28,20 @@ class Solution{
         
         for(int i = 0; i < n; i++)
         {
-            total = total + a[i];
+            get_total = get_total + a[i];
         }
         
         for(int i = 1; i < n - 1; i++)
         {
-            if(sum_prev == (total - (sum_prev + a[i])))
+            if(before_sum == (get_total - (before_sum + a[i])))
             {
                 return (i+1);
             }
             
-            sum_prev = sum_prev + a[i];
+            before_sum = before_sum + a[i];
         }
         
         return -1;
-        
     }
 
 };
