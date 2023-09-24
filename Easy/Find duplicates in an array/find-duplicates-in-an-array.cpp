@@ -7,52 +7,25 @@ class Solution{
   public:
     vector<int> duplicates(int arr[], int n) {
         // code here
-        sort(arr,arr+n);
+        map<int,int>m;
         vector<int>v;
-        int count = 1;
-        
-        // for(int i = 0; i<n ; i++)
-        // {
-        //     cout<<arr[i]<<" ";
-        // }
-        for(int i = 0; i < n - 1; i++)
+        for(int i = 0; i < n; i++)
         {
-            if(arr[i] == arr[i+1])
+            m[arr[i]]++;
+        }
+        for(auto itr = m.begin(); itr != m.end() ; itr++)
+        {
+            if(itr->second > 1)
             {
-                count++;
-                if(count == 2)
-                {
-                    v.emplace_back(arr[i]);
-                }
-            }
-            else
-            {
-                count = 1;
+                v.emplace_back(itr->first);
             }
         }
-        
         if(v.empty())
         {
             v.emplace_back(-1);
             return v;
         }
-        
         return v;
-        
-        
-        
-        
-        
-        // map<int,int>m;
-        // for(int i = 0; i < n ; i++)
-        // {
-        //     m[arr[i]]++;
-        // }
-        // for(auto itr = m.begin(); itr != m.end(); i++)
-        // {
-            
-        // }
-        
     }
 };
 
