@@ -38,8 +38,6 @@ using namespace std;
         
     }
 
-
-
 class Solution {
   public:
     int numberOfEnclaves(vector<vector<int>> &grid) {
