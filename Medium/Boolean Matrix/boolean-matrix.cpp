@@ -5,7 +5,6 @@ using namespace std;
 // } Driver Code Ends
 
 
-
 class Solution
 {   
     public:
@@ -42,9 +41,9 @@ class Solution
         }
         
         // auto itr = vec.begin();
-        int start = 0;
+        // int start = 0;
         int i = 0;
-        while(start < vec.size())
+        while(i < vec.size())
         {
 
             int j = vec[i+1];
@@ -52,13 +51,10 @@ class Solution
             {
                 matrix[i][j] = 1;
             }
-            start = start + 2;
-            
             i = i + 2;
         
             
         }
-        
         
     }
 };
