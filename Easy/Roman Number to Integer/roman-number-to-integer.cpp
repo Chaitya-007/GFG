@@ -12,14 +12,14 @@ class Solution {
   public:
     int romanToDecimal(string &str) {
         // code here
-         unordered_map<char,int> CP;
-        CP['I']=1;
-        CP['V']=5;
-        CP['X']=10;
-        CP['L']=50;
-        CP['C']=100;
-        CP['D']=500;
-        CP['M']=1000;
+        unordered_map<char,int> raj;
+        raj['I']=1;
+        raj['V']=5;
+        raj['X']=10;
+        raj['L']=50;
+        raj['C']=100;
+        raj['D']=500;
+        raj['M']=1000;
         
         int num=0;
         for(int i=0;i<str.length();i++)
@@ -27,14 +27,14 @@ class Solution {
             // if its last index
             if(i==str.length()-1)
             {
-                num+=(CP[str[i]]);
+                num+=(raj[str[i]]);
                 continue;
             }
             
-            if(CP[str[i]]<CP[str[i+1]])
-            num+=(-CP[str[i]]);
+            if(raj[str[i]]<raj[str[i+1]])
+            num+=(-raj[str[i]]);
             else
-            num+=CP[str[i]];
+            num+=raj[str[i]];
         }
         
         return num;
