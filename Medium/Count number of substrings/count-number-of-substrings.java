@@ -27,7 +27,7 @@ class GfG
 
 class Solution
 {
-   long substrCount (String S, int K) {
+    long substrCount (String S, int K) {
         // your code here
         return atmost(S,K)-atmost(S,K-1);
     }
@@ -49,6 +49,6 @@ class Solution
             }
             res = res + (i-left+1);
         }
-        return res; 
+        return res;
     }
 }
