@@ -79,7 +79,7 @@ class Solution
     void rearrange(struct Node *odd)
     {
         //add code here
-         Node* o=odd,*e=odd->next;
+        Node* o=odd,*e=odd->next;
         Node *evenHead=odd->next;
         while(e!=NULL && e->next!=NULL){
             o->next=e->next;
