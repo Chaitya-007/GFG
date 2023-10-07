@@ -38,7 +38,7 @@ class Solution
     Node* pairWiseSwap(struct Node* head) 
     {
         // The task is to complete this method
-         if(!head || !head->next)
+        if(!head || !head->next)
         {
             return head;
         }
