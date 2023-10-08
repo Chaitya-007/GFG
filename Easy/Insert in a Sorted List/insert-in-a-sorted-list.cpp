@@ -45,7 +45,7 @@ class Solution{
     // Should return head of the modified linked list
     Node *sortedInsert(struct Node* head, int dt) {
         // Code here
-          struct Node* temp=((struct Node*)malloc(sizeof(struct Node)));
+        struct Node* temp=((struct Node*)malloc(sizeof(struct Node)));
         temp->data=dt;
         if(head->data>dt)
         {
