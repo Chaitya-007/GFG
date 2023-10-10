@@ -98,7 +98,6 @@ struct Node
 class Solution
 {
 private:
-
 Node* getTargetNode(Node* root,int target,unordered_map<Node*,Node*> &parent){
     
     queue<Node*> q;
@@ -134,8 +133,7 @@ public:
     vector <int> KDistanceNodes(Node* root, int target , int k)
     {
         // return the sorted vector of all nodes at k dist
-         // return the sorted vector of all nodes at k dist
-        unordered_map<Node*,Node*> parent;
+         unordered_map<Node*,Node*> parent;
         
         vector<int> ans;
         if(!root) return ans;
