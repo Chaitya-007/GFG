@@ -119,14 +119,8 @@ class Solution {
     
     
     
-    
-    
     int dupSub(Node *root) {
          // code here
-        //   a duplicate subtree of size 2 or more else returns false*/
-    
-         // code here
-         
           unordered_map<string,int>visited;
          
          string s = solve(root,visited);
