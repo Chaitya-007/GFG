@@ -86,7 +86,7 @@ class Solution
 {
     public:
     //Function to find the nodes that are common in both BST. 
-     unordered_map<int,int>mp;
+    unordered_map<int,int>mp;
     void solve(Node* root) {
         if(root == NULL) {
             return;
@@ -98,7 +98,7 @@ class Solution
     vector <int> findCommon(Node *root1, Node *root2)
     {
      //Your code here
-      vector<int>ans;
+     vector<int>ans;
        solve(root1);
        solve(root2);
        for(auto x: mp) {
@@ -108,7 +108,6 @@ class Solution
        }
        sort(ans.begin(),ans.end());
        return ans;
-     
     }
 };
 
