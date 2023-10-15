@@ -50,7 +50,7 @@ class Solution{
     Node* buildBalancedTree(Node* root)
     {
     	// Code here
-    	  inorder(root);
+    	inorder(root);
         int n=tree.size();
         return createTree(0,n-1);
     }
