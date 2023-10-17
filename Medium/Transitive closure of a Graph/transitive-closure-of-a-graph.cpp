@@ -9,8 +9,7 @@ using namespace std;
 
 class Solution{
 public:
-
-      int n;
+    int n;
     void util(vector<vector<int>> &adj,vector<vector<int>> &res, int j, int i){
         
         res[i][j] = 1;
