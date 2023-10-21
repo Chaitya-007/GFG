@@ -26,31 +26,10 @@ class GFG
 class Solution{
     static long sumOfDivisors(int N){
         // code here
-        
-        //  long sum = 0;
-       
-        
-        // for(int i = 1; i <= N; i++)
-        // {
-        //     int divisor = 1;
-        //     while(divisor <= i)
-        //     {
-        //         if(i % divisor == 0)
-        //         {
-        //             sum += divisor;
-        //         }
-                
-        //         divisor++;
-        //     }
-        // }
-        
-        // return sum;
-        
         long out = 0;
         for (int i = 1; i <= N; ++i) {
             out += (N / i) * i;
         }
         return out;
-
     }
 }
