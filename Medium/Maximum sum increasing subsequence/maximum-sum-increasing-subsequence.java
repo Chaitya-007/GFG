@@ -27,7 +27,7 @@ class GfG
 
 class Solution
 {
-	 public int maxSumIS(int arr[], int n) {
+public int maxSumIS(int arr[], int n) {
         int[] dp = new int[n];
         int[] hash = new int[n];
         // Initialize dp array with the values of the input array arr
@@ -57,5 +57,5 @@ class Solution
         //     maxValueInd = hash[maxValueInd];
         // }
         return maxValue;
-    } 
+    }  
 }
