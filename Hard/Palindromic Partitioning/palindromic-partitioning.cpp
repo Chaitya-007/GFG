@@ -9,7 +9,7 @@ using namespace std;
 
 class Solution{
 public:
-     int minmoves(vector<vector<bool>>& G, vector<bool>& visited, int u, int &n, vector<int>& dp){
+    int minmoves(vector<vector<bool>>& G, vector<bool>& visited, int u, int &n, vector<int>& dp){
         if(u == n){
             return 0;
         }
