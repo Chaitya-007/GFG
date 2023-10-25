@@ -9,8 +9,7 @@ using namespace std;
 
 class Solution{
 public:
-
-int solve(int i, int W, int val[], int wt[], vector<vector<int>>&dp){
+    int solve(int i, int W, int val[], int wt[], vector<vector<int>>&dp){
         if(i==0){
             if(W>=wt[0]){
                 return (int)(W/wt[0])*val[0];
