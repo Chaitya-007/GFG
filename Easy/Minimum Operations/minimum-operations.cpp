@@ -6,7 +6,7 @@ using namespace std;
 class Solution
 {
   public:
-  int f(int n)
+   int f(int n)
     {
         if(n==1)
         return 1;
