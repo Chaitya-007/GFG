@@ -6,22 +6,17 @@ using namespace std;
 class Solution
 {
   public:
-   int f(int n)
-    {
-        if(n==1)
-        return 1;
-        
-        if(n%2==0)
-        return 1+f(n/2);
-        
-        else
-        return 1+f(n-1);
-        
-    }
+   
     int minOperation(int n)
     {
         //code here.
-        return f(n);
+        int a=-1,b=-1;
+        while(n){
+            a++;
+            if(n&1) b++;
+            n>>=1;
+        }
+        return 1+a+b;
     }
 };
 
