@@ -10,53 +10,7 @@ class Solution{
   public:
     int minimumNumberOfDeletions(string s) { 
         // code here
-        // int maxlen = 1;
-        // int st = 0;
-        // int n = S.length();
-        // for(int i = 0; i < n - 1; i++)
-        // {
-        //     int l = i;
-        //     int r = i + 1;
-        //     while(l>= 0 and r < n)
-        //     {
-        //         if(S[l] != S[r])
-        //         {
-        //             break;
-        //         }
-        //         l--;
-        //         r++;
-        //     }
-            
-        //     int len = r - l - 1;
-        //     if(maxlen < len)
-        //     {
-        //         maxlen = len;
-        //     }
-        // }
-        
-        // for(int i = 0; i < n; i++)
-        // {
-        //     int l = i;
-        //     int r = i;
-        //     while(l >= 0 and r<n)
-        //     {
-        //         if(S[l] != S[r])
-        //         {
-        //             break;
-        //         }
-        //         l--;
-        //         r++;
-        //     }
-        //     int len = r - l - 1;
-        //     if(maxlen < len)
-        //     {
-        //         maxlen = len;
-        //     }
-        // }
-        // int result = (n - maxlen);
-        // return result;
-        
-          int n = s.size();
+        int n = s.size();
         vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
 
         for (int i = 1; i <= n; i++) 
