@@ -27,7 +27,7 @@ class GFG
 
 class Solution
 {
-    public int is_bleak(int n)
+     public int is_bleak(int n)
     {
         // Code here
           int m=n;
