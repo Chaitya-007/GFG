@@ -17,7 +17,7 @@ class Solution
     {
         
         // Your code here
-        unordered_map<char, int> mp1;
+         unordered_map<char, int> mp1;
         unordered_map<char, int> mp2;
         
         int count = 0;
@@ -77,7 +77,6 @@ class Solution
         }
         
         return false;
-        
         
     }
 };
