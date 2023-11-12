@@ -12,7 +12,7 @@ class Solution
     bool isRotated(string str1, string str2)
     {
         // Your code here
-         int num1=str1.size(),i,j=2;
+        int num1=str1.size(),i,j=2;
         if(num1 != str2.size()) return false;
         else {
             for(i=0;i<num1;++i){
