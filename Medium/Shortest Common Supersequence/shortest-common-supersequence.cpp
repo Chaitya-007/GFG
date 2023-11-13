@@ -16,7 +16,7 @@ class Solution
     int shortestCommonSupersequence(string X, string Y, int m, int n)
     {
         //code here
-        int dp[m+1][n+1];
+         int dp[m+1][n+1];
         for(int i=0;i<=m;i++){
             for(int j=0;j<=n;j++){
                 if(i==0)
