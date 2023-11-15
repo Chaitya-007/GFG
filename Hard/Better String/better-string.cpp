@@ -9,8 +9,7 @@ using namespace std;
 // User function Template for C++
 
 class Solution {
-    
-     int distSubSeq(string s)
+  int distSubSeq(string s)
     {
         unordered_map<char, int> last;
         int count = 1;
