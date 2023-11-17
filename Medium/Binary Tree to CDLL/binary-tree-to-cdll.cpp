@@ -125,7 +125,7 @@ class Solution
 {
   public:
   
-  void inorder(queue<int> &q,Node *root)
+   void inorder(queue<int> &q,Node *root)
   {
       if(root == nullptr)
       {
@@ -145,7 +145,7 @@ class Solution
     Node *bTreeToCList(Node *root)
     {
     //add code here.
-    queue<int> q;
+     queue<int> q;
     inorder(q,root);
     
     struct Node *head = nullptr;
@@ -157,6 +157,7 @@ class Solution
         if(head == nullptr)
         {
             head = newNode(q.front());
+            // head = new Node(q.front());
             // head->data = q.front();
             q.pop();
             t = head;
@@ -164,6 +165,7 @@ class Solution
         else
         {
             Node *p = newNode(q.front());
+            // Node *p = new Node(q.front());
             // p->data = q.front();
             q.pop();
             p->left = t;
