@@ -104,25 +104,26 @@ class Solution
     Node* reverseDLL(Node * head)
     {
         //Your code here
-        stack<int> st;
         Node *p = head;
         Node *q = head;
+        int size = 1;
         
-        while(p != nullptr)
+        
+        while(q->next != nullptr)
         {
-            st.push(p->data);
-            p = p->next;
-            // cout<<st.top()<<" ";
+            size++;
+            q = q->next;
         }
         
-        p = q;
-        // cout<<"\n";
-        while(p != nullptr)
+        size = size/2;
+        
+        while(size--)
         {
-            p->data = st.top();
-            // cout<<st.top()<<" ";
-            st.pop();
+            int temp = p->data;
+            p->data = q->data;
+            q->data = temp;
             p = p->next;
+            q = q->prev;
         }
         
         return head;
