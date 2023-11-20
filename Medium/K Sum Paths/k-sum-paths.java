@@ -96,6 +96,7 @@ class GFG
 
 class Solution
 {
+    
       int count = 0;
     void helper(Node root,int k,ArrayList<Integer> path){
         if(root == null){
@@ -117,10 +118,8 @@ class Solution
     public int sumK(Node root,int k)
     {
         // code here 
-          // code here 
         ArrayList<Integer> path = new ArrayList<>();
         helper(root , k, path);
         return count;
-    
     }
 }
