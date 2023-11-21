@@ -134,7 +134,7 @@ class Solution
 	boolean isIdentical(Node root1, Node root2)
 	{
 	    // Code Here
-	    if(root1 == null && root2 == null) {
+	       if(root1 == null && root2 == null) {
             return true;
         }
         
