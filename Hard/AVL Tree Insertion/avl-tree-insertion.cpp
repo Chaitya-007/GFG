@@ -72,7 +72,7 @@ struct Node
 class Solution{
   public:
     /*You are required to complete this method */
-     int height(Node* N){
+   int height(Node* N){
         if(N==NULL){
             return 0;
         }
