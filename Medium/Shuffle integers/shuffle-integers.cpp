@@ -11,7 +11,7 @@ class Solution{
 	void shuffleArray(int arr[],int n)
 	{
 	    // Your code goes here
-	    queue<int>q1;
+	     queue<int>q1;
 	    queue<int>q2;
 	    for(int i = 0; i < n; i++)
 	    {
@@ -39,9 +39,6 @@ class Solution{
 	            q2.pop();
 	        }
 	    }
-	    
-	    
-	    
 	}
 		 
 
