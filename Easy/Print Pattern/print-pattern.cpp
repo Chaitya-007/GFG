@@ -9,17 +9,19 @@ using namespace std;
 
 class Solution{
 public:
- vector<int> res;
+vector<int> vec;
     vector<int> pattern(int N){
         // code here
-        if (N <= 0) {
-            res.push_back(N);
-            return res;
+        if(N<=0)
+        {
+            vec.emplace_back(N);
+            return vec;
         }
-        res.push_back(N);
+        
+        vec.emplace_back(N);
         pattern(N - 5);
-        res.push_back(N);
-        return res;
+        vec.emplace_back(N);
+        return vec;
     }
 };
 
