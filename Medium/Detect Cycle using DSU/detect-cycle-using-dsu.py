@@ -3,7 +3,7 @@ class Solution:
     #Function to detect cycle using DSU in an undirected graph.
 	def detectCycle(self, V, adj):
 		#Code here
-		parent = list(range(V))
+        parent = list(range(V))
 
         def find(u):
             if u != parent[u]:
@@ -24,8 +24,6 @@ class Solution:
                 union(u, v)
 
         return 0
-
-
 
 #{ 
  # Driver Code Starts
