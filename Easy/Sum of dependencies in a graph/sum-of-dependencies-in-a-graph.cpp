@@ -13,8 +13,7 @@ class Solution {
         // code here
         int ans=0;
         for(int i=0;i<V;i++)ans+=adj[i].size();
-           
-           return ans;
+       return ans;
     }
 };
 
