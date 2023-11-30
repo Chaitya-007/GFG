@@ -10,8 +10,7 @@ using namespace std;
 class Solution{   
 public:
     int minimumStep(int n){
-        //complete the function here
-        int edge=0;
+      int edge=0;
         while(n!=1)
         {
             if(n%3==0)
