@@ -103,7 +103,7 @@ class Solution
 public:
     int countPairs(Node* root1, Node* root2, int x)
     {
-         stack<Node*>s1;
+  stack<Node*>s1;
        stack<Node*>s2;
        int ans=0;
        Node*a=root1;
