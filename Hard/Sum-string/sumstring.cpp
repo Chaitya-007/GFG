@@ -5,8 +5,7 @@ using namespace std;
 // } Driver Code Ends
 class Solution{   
 public:
-
-    string helper(string &num1, string &num2) {
+string helper(string &num1, string &num2) {
         string res = "";
         int n = num1.size(), m = num2.size();
         int carry = 0;
@@ -40,10 +39,9 @@ public:
         }
         return true;
     }
-
     int isSumString(string str){
         // code here 
-        int n = str.size();
+         int n = str.size();
         // 0-i, i+1 - j
         for(int i = 0; i < n; i++) {
             for(int j = i+1; j < n-1; j++) {
