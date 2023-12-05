@@ -11,7 +11,7 @@ class Solution {
   public:
     int getMinDiff(int arr[], int n, int k) {
         // code here
-        sort(arr,arr+n);
+         sort(arr,arr+n);
        int minele,maxele;
        int result=arr[n-1]-arr[0];
        
