@@ -23,7 +23,7 @@ class GFG {
 //User function Template for Java
 
 class Solution {
-    static int sumdig(int n){
+     static int sumdig(int n){
 
         int sum = 0;
 
