@@ -11,7 +11,8 @@ class Solution{
 public:
     int findWinner(int n, int arr[]){
         // code here
-          int ans=arr[0];
+      
+        int ans=arr[0];
         for(int i=1;i<n;i++)
         {
             
@@ -24,7 +25,6 @@ public:
         else
           return 2;
     }
-    
 };
 
 //{ Driver Code Starts.
