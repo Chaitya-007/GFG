@@ -12,7 +12,6 @@ class Solution
     int determinantOfMatrix(vector<vector<int> > matrix, int n)
     {
         // code here 
-        
         // if the matrix is 1 * 1, return the single element
         if(n == 1) {
             return matrix[0][0];
