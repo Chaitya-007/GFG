@@ -11,7 +11,7 @@ public:
 	int kSubstrConcat (int n, string s, int k)
 	{
 	    // Your Code Here
-	    if(n%k) return 0;
+	    	    if(n%k) return 0;
         map<string,int>mp;
         string temp = "";
         temp += s[0];
