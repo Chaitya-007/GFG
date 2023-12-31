@@ -5,7 +5,7 @@ using namespace std;
 // } Driver Code Ends
 //User function Template for C++
 
-class Solution {
+        class Solution {
     
     public:
    int solve(int i,int sum,int coins[],int N,vector<vector<int>> &dp){
@@ -31,6 +31,7 @@ class Solution {
     }
     
 };
+
 
 
 
