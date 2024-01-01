@@ -5,7 +5,7 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    bool canPair(vector<int> nums, int k) {
+     bool canPair(vector<int> nums, int k) {
         int n=nums.size(),count=0;
         if(n%2==1) return false;
         vector<int> rem(k,0);
