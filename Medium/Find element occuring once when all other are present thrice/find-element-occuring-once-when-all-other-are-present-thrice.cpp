@@ -10,7 +10,7 @@ using namespace std;
 
 class Solution {
   public:
-     int singleElement(int arr[] ,int N) {
+    int singleElement(int arr[] ,int N) {
         // code here
         int ans,c=0;
         if(N==1){
