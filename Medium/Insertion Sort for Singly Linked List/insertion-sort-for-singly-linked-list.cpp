@@ -44,7 +44,7 @@ struct Node {
 class Solution
 {
     public:
-    Node* insertionSort(struct Node* head_ref)
+   Node* insertionSort(struct Node* head_ref)
     {
         //code here
         if(head_ref==NULL ||head_ref->next==NULL )
