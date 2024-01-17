@@ -9,27 +9,34 @@ using namespace std;
 //User function Template for C++
 
 class Solution {
+      void solve(vector<int>temp,vector<vector<int>>&ans,vector<int> &arr,int index,set<vector<int>>&st){
+       if(index==arr.size()){
+        st.insert(temp);
+           return ;
+       }
+       
+       for(int i=index;i<arr.size();i++){
+           
+           swap(temp[index],temp[i]);
+           solve(temp,ans,arr,index+1,st);
+           swap(temp[index],temp[i]);
+           
+       }
+       
+   } 
+    
   public:
-  
-  void solve(set<vector<int>> &sv, vector<int> arr, int ind, int n) {
-        // base case
-        if(ind == n) {
-            sv.insert(arr);
-            return ;
-        }
+    vector<vector<int>> uniquePerms(vector<int> &arr ,int n) {
+        // code here
+           vector<int>temp=arr;
+        set<vector<int>>st;
         
-        for(int j = ind;j < n; j++) {
-            swap(arr[ind], arr[j]);
-            solve(sv, arr, ind+1, n);  // recursive case
-            swap(arr[ind], arr[j]);
+        vector<vector<int>>ans;
+        solve(temp,ans,arr,0,st);
+       
+        for(auto i:st){
+            ans.push_back(i);
         }
-    }
-  
-   vector<vector<int>> uniquePerms(vector<int> &arr ,int n) {
-        set<vector<int>> sv;
-        solve(sv, arr, 0, n);
-
-        vector<vector<int>> ans(sv.begin(), sv.end());
         return ans;
     }
 };
