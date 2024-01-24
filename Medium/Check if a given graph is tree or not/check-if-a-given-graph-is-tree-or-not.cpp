@@ -36,7 +36,7 @@ public:
 // } Driver Code Ends
 class Solution {
   public:
-     bool dfs(int node,int parent,vector<int>adj[],vector<bool>&vis) {
+   bool dfs(int node,int parent,vector<int>adj[],vector<bool>&vis) {
 
       vis[node]=true;
 
