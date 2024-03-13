@@ -12,7 +12,7 @@ class Solution{
     vector<int> matrixDiagonally(vector<vector<int>>&mat)
     {
          //Your code here
-         vector<int>v1;
+          vector<int>v1;
          int n=mat.size();
          n=n-1;
          for(int i=0;i<=2*n;i++){
