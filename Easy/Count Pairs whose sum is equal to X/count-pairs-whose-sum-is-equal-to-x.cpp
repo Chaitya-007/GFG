@@ -52,7 +52,7 @@ class Solution{
     // your task is to complete this function
     int countPairs(struct Node* head1, struct Node* head2, int x) {
         // Code here
-                int count = 0;
+          int count = 0;
         unordered_set<int> seen;
 
         Node* temp2 = head2;
@@ -74,7 +74,6 @@ class Solution{
         }
 
         return count;
-        
     }
 };
 
