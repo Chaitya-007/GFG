@@ -52,19 +52,29 @@ class Solution{
     // your task is to complete this function
     int countPairs(struct Node* head1, struct Node* head2, int x) {
         // Code here
-            int ans=0;
-        unordered_map<int,int>m;
-        struct Node*curr1=head1;
-        struct Node*curr2=head2;
-        while(curr2){
-            m[curr2->data]++;
-            curr2=curr2->next;
+                int count = 0;
+        unordered_set<int> seen;
+
+        Node* temp2 = head2;
+        while (temp2 != nullptr) 
+        {
+            seen.insert(temp2->data);
+            temp2 = temp2->next;
         }
-        while(curr1){
-            if(m[x-curr1->data]==1) ans++;
-            curr1=curr1->next;
+
+        Node* temp1 = head1;
+        while (temp1 != nullptr) 
+        {
+            int complement = x - temp1->data;
+            if (seen.find(complement) != seen.end()) 
+            {
+                count++;
+            }
+            temp1 = temp1->next;
         }
-        return ans;
+
+        return count;
+        
     }
 };
 
