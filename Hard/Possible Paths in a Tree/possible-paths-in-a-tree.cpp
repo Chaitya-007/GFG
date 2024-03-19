@@ -33,7 +33,7 @@ class Solution{
 	vector<int> maximumWeight(int n, vector<vector<int>> edges, int q, vector<int> &queries)
 	{
 	    // code here
-	      ans = 0;
+	    ans = 0;
         vector<int> parent(n+1,0),sz(n+1,0);
         for(int i=0;i<=n;i++){
             parent[i]=i;
@@ -60,6 +60,7 @@ class Solution{
            }
        }
        return res;
+	    
 	}
 };
 
