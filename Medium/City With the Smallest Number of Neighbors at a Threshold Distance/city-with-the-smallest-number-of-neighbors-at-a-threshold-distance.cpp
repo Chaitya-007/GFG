@@ -9,7 +9,7 @@ using namespace std;
 // User function Template for C++
 class Solution {
   public:
-   void DjskstrasAlgo(int src, unordered_map<int, list<pair<int,int>>>& adj, vector<int>& dist) {
+    void DjskstrasAlgo(int src, unordered_map<int, list<pair<int,int>>>& adj, vector<int>& dist) {
         dist[src] = 0;
         priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
         pq.push({0, src});
