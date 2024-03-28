@@ -7,58 +7,62 @@ using namespace std;
 
 // } Driver Code Ends
 // User function Template for C++
-
 class Solution {
   public:
-    int solve(vector<vector<vector<int>>>& graph,int n,int threshold,int i,vector<int>&vis){
-        queue<pair<int,int>>q;
-        vector<int>mp(n,-1);
-        q.push({i,0});
-        mp[i] = 0;
-        int ct = 0;
-        while(!q.empty()){
-            int siz = q.size();
-            for(int k=0;k<siz;k++){
-                pair<int,int>fr = q.front();
-                q.pop();
-                for(int j=0;j<graph[fr.first].size();j++){
-                    vector<int>neigh = graph[fr.first][j];
-                    if(fr.second+neigh[1] <= threshold){
-                        if(mp[neigh[0]]>0  and mp[neigh[0]] > fr.second+neigh[1]){
-                            q.push({neigh[0],fr.second+neigh[1]});
-                            mp[neigh[0]] = fr.second+neigh[1];
-                        }
-                        else if(mp[neigh[0]] == -1){
-                            q.push({neigh[0],fr.second+neigh[1]});
-                            mp[neigh[0]] = fr.second+neigh[1];
-                            ct++;
-                        }
-                    }
+   void DjskstrasAlgo(int src, unordered_map<int, list<pair<int,int>>>& adj, vector<int>& dist) {
+        dist[src] = 0;
+        priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
+        pq.push({0, src});
+        
+        while(!pq.empty()) {
+            auto node = pq.top().second;
+            auto nodeDist = pq.top().first;
+            pq.pop();
+            
+            for(auto nbr: adj[node]) {
+                if(nbr.second + nodeDist < dist[nbr.first]) {
+                    dist[nbr.first] = nodeDist + nbr.second;
+                    pq.push({dist[nbr.first], nbr.first});
                 }
             }
         }
-        return ct;
+        
+        return;
     }
+  
     int findCity(int n, int m, vector<vector<int>>& edges, int distanceThreshold) {
-        vector<vector<vector<int>>>graph(n);
-        for(int i=0;i<m;i++){
-            //O(m)
-            graph[edges[i][0]].push_back({edges[i][1],edges[i][2]});
-            graph[edges[i][1]].push_back({edges[i][0],edges[i][2]});
+        // Your code here
+        
+        unordered_map<int, list<pair<int,int>>> adj;
+        for(int i=0; i<m; i++) {
+            auto u = edges[i][0];
+            auto v = edges[i][1];
+            auto w = edges[i][2];
+            
+            adj[u].push_back({v, w});
+            adj[v].push_back({u, w});
         }
-        int city = -1;
-        int val = INT_MAX;
-        for(int i=0;i<n;i++){
-            // O(n * n * n)
-            vector<int>vis(n,0);
-            vis[0] = 1;
-            int c = solve(graph,n,distanceThreshold,i,vis);
-            if(val >= c){
-                city = i; 
-                val = c;
+        int minCities = INT_MAX, ans = 0;
+        for(int i=0; i<n; i++) {
+            vector<int> dist(n, 1e9);
+            
+            DjskstrasAlgo(i, adj, dist);
+            
+            int cityCnt = 0;
+            for(int j=0; j<n; j++) {
+                // cout << dist[j] << " ";
+                if(dist[j] <= distanceThreshold && dist[j] != 0) {
+                    cityCnt++;
+                }
+            }
+            
+            if(cityCnt <= minCities) {
+                minCities = cityCnt;
+                ans = i;
             }
         }
-        return city;
+        
+        return ans;
     }
 };
 
