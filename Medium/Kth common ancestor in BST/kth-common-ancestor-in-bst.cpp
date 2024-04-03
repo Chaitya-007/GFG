@@ -97,7 +97,6 @@ struct Node
 
 class Solution
 {
-    
      private:
     //For finding the lowest common ancestor of two nodes in bst
     Node* LCA(Node* root, int &x, int &y){
