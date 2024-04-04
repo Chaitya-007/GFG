@@ -8,7 +8,7 @@ class Solution
 {
     public:
     //Function to find sum of all possible substrings of the given string.
-     int mod = 1e9+7;
+    int mod = 1e9+7;
     long long sumSubstrings(string s){
         
         // your code here
@@ -22,7 +22,6 @@ class Solution
             ans = (ans + dp[i])%mod;
         }
         return ans;
-        
     }
 };
 
