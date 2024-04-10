@@ -11,58 +11,12 @@ class Solution{
     public:
     int findSingle(int n, int arr[]){
         // code here
-        // map <int, int> hashset;
-        // for(int i = 0; i < n; i++)
-        // {
-        //     hashset[arr[i]]++;
-        // }
-        
-        // // for(auto itr : hashset)
-        // // {
-        // //     if(itr.second == 1)
-        // //     {
-        // //         return (itr.first);
-        // //         // int element = itr.first;
-        // //         // return element;
-        // //     }
-            
-        // //     // cout<<itr.first<<"->"<<itr.second<<"\n";
-        // // }
-        
-        // for(auto itr = hashset.begin(); itr != hashset.end(); itr++)
-        // {
-        //     if(itr->second == 1)
-        //     {
-        //         return (itr->first);
-        //     }
-        // }
-        
-        // if(n%2 == 0)
-        
-        // sort(arr, arr + n);
-        
-        // for(int i = 0; i < n; i = i + 2)
-        // {
-        //     if(i == (n - 1))
-        //     {
-        //         return arr[i];
-        //     }
-        //     if(arr[i] != arr[i+1])
-        //     {
-        //         return arr[i];
-        //     }
-            
-        // }
-        
         int ans = 0;
-        
         for(int i = 0; i < n; i++)
         {
-            ans = ans^arr[i];
+            ans ^= arr[i];
         }
-        
         return ans;
-        
     }
 };
 
