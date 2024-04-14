@@ -11,27 +11,23 @@ class Solution {
   public:
     long long pairAndSum(int n, long long arr[]) {
         // code here
-        // long long sum = 0;
-        // for(int i = 0; i < n; i++)
-        // {
-        //     for(int j = i + 1; j < n; j++)
-        //     {
-        //         sum += (arr[i]&arr[j]);
-        //     }
-        // }
+        // https://youtu.be/1qqeHFoQCYs?feature=shared
+        long long ans = 0;
         
-        // return sum;
-        
-         long long  ans =0;
-        for(int i = 0; i < 32; i++){
-            long long  k = 0;
-            for(int j = 0; j < n; j++){
-                //checking no of set bit 
-               if((arr[j] & (1 << i)) != 0 )
-                 k++;
+        for(int i = 0; i < 32; i++)
+        {
+            long long count = 0;
+            for(int j = 0; j < n; j++)
+            {
+                if(arr[j] & 1<<i)
+                {
+                    count++;
+                }
             }
-            ans += (1<< i)*((k) * (k -1)) >> 1;
+            
+            ans += (   (1<<i) *  ((count*(count-1))/2)  );
         }
+        
         return ans;
     }
 };
