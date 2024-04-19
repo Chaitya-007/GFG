@@ -13,14 +13,19 @@ class Solution {
     //Function to find two repeated elements.
     vector<int> twoRepeated (int arr[], int n) {
         // Your code here
-        vector<int> temp;
-        unordered_map<int,int> mpp;
-        for(int i=0;i<n+2;i++){
-            mpp[arr[i]]++;
-            if(mpp[arr[i]]==2) temp.push_back(arr[i]);
+        unordered_map<int, int> umap;
+        vector<int> vec;
+        for(int i = 0; i < (n+2); i++)
+        {
+            umap[arr[i]]++;
+            // cout<<arr[i]<<"->"<<umap[arr[i]]<<endl;
+            if(umap[arr[i]] == 2)
+            {
+                vec.emplace_back(arr[i]);
+            }
         }
-        if(temp.size()>1)
-        return temp;
+        
+        return vec;
     }
 };
 
