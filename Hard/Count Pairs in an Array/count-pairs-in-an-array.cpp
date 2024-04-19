@@ -4,58 +4,78 @@ using namespace std;
 
 // } Driver Code Ends
 
-class Solution
-{
-public:
-    int merging(int arr[], int low, int mid, int high)
+
+class Solution{
+    public:
+    
+    int merge(int arr[],int low, int mid, int high)
     {
-        int i = low, j = mid + 1, count = 0, k = 0, n = high - low + 1;
-        int temp[n];
+        int left = low;
+        int right = mid + 1;
+        vector<int> vec;
+        int inv = 0;
         
-        while(i <= mid and j <= high) 
+        while(left <= mid && right <= high)
         {
-            if(arr[i] <= arr[j])
-                temp[k++] = arr[i++];
-            else 
+            if(arr[left] <= arr[right])
             {
-                count += mid - i + 1;
-                temp[k++] = arr[j++];
+                vec.emplace_back(arr[left]);
+                left++;
+            }
+            else
+            {
+             vec.emplace_back(arr[right]);
+             right++;
+             inv += (mid + 1 - left);
             }
         }
         
-        while(i <= mid)
-            temp[k++] = arr[i++];
-            
-        while(j <= high)
-            temp[k++] = arr[j++];
-            
-        for(i = 0, j = low; i < n; i++, j++)
-            arr[j] = temp[i];
-            
-        return count;
-    }
-
-    int mergeSort(int arr[], int low, int high) 
-    {
-        int count = 0;
-        
-        if(low < high) 
+        while(left<=mid)
         {
-            int mid = low + (high - low) / 2;
-            count += mergeSort(arr, low, mid);
-            count += mergeSort(arr, mid + 1, high);
-            count += merging(arr, low, mid, high);
+            vec.emplace_back(arr[left]);
+            left++;
         }
         
-        return count;
+        while(right<=high)
+        {
+            vec.emplace_back(arr[right]);
+            right++;
+        }
+        
+        for(int i = low; i <= high; i++)
+        {
+            arr[i] = vec[i - low];
+        }
+        
+        return inv;
     }
-
+    
+    int mergesort(int arr[], int low, int high)
+    {
+        int inv = 0;
+        if(low < high)
+        {
+            int mid = (low + high)/2;
+            inv += mergesort(arr,low,mid);
+            inv += mergesort(arr,mid+1,high);
+            inv += merge(arr,low,mid,high);
+        }
+        
+        return inv;
+    }
+    
     int countPairs(int arr[] , int n ) 
     {
+        // Your code goes here  
+        
         for(int i = 0; i < n; i++)
-            arr[i] *= i;
-            
-        return mergeSort(arr, 0, n - 1);
+        {
+            arr[i] = (i*arr[i]);
+        }
+        
+       int inversion = mergesort(arr, 0, n-1);
+       return inversion;
+        
     }
 };
 
