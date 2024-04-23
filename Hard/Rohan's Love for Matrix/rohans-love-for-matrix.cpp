@@ -23,8 +23,8 @@ class Solution {
         for(int i = 3; i <= n; i++)
         {
             c = (a + b)%mod;
-            a = b;
-            b = c;
+            a = b%mod;
+            b = c%mod;
         }
         
         
