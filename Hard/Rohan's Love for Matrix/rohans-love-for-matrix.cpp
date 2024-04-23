@@ -28,7 +28,7 @@ class Solution {
         }
         
         
-        return (c%mod);
+        return c;
     }
 };
 
