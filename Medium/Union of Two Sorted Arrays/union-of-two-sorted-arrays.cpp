@@ -14,23 +14,84 @@ class Solution{
         //Your code here
         //return vector with correct order of elements
         
-        set<int> hashset;
-        
-        for(int i = 0; i < n; i++)
-        {
-            hashset.insert(arr1[i]);
-        }
-        
-        for(int i = 0; i < m; i++)
-        {
-            hashset.insert(arr2[i]);
-        }
+        int i = 0;
+        int j = 0;
         
         vector<int> vec;
+        int element;
         
-        for(auto itr : hashset)
+        while(i <= (n-1) && j <= (m-1))
         {
-            vec.emplace_back(itr);
+            if(i != 0 || j != 0)
+            {
+                 element = vec.back(); 
+            }
+            // gives O(1)
+            
+            if(arr1[i] == arr2[j])
+            {
+                if(i == 0)
+                {
+                 vec.emplace_back(arr1[i]);   
+                }
+                else if(element != arr1[i])
+                {
+                    vec.emplace_back(arr1[i]);
+                }
+                i++;
+                j++;
+            }
+            else if(arr1[i] < arr2[j])
+            {
+                if(i == 0)
+                {
+                 vec.emplace_back(arr1[i]);   
+                }
+                
+                else if(element != arr1[i])
+                {
+                    vec.emplace_back(arr1[i]);
+                }
+                
+                i++;
+            }
+            else 
+            {
+                if(j == 0)
+                {
+                    vec.emplace_back(arr2[j]);
+                }
+                else if(element != arr2[j])
+                {
+                    vec.emplace_back(arr2[j]);
+                }
+                
+                j++;
+            }
+        }
+        
+        while(i <= (n-1))
+        {
+            int element = vec.back();
+            
+            if(element < arr1[i])
+            {
+                vec.emplace_back(arr1[i]);
+            }
+            
+            i++;
+        }
+        
+        while(j <= (m-1))
+        {
+            int element = vec.back();
+            
+            if(element < arr2[j])
+            {
+                vec.emplace_back(arr2[j]);
+            }
+            
+            j++;
         }
         
         return vec;
