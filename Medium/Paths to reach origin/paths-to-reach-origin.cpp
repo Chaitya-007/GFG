@@ -10,7 +10,6 @@ using namespace std;
 class Solution
 {
 public:
-
     int ways(int x, int y)
     {
         //code here.
