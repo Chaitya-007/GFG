@@ -35,21 +35,38 @@ class Solution{
     public:
     Node* deleteMid(Node* head)
     {
+        if(!head || !head->next)
+        {
+            return nullptr;
+        }
         // Your Code Here
-        if(head == NULL || head->next == NULL){
-            return NULL;
+        int cnt = 0;
+        
+        struct Node* ptr = head;
+        
+        while(ptr != nullptr)
+        {
+            cnt++;
+            ptr = ptr->next;
         }
-        Node* temp = head;
-        unordered_map<int, Node*> mp;
-        int n = 0;
-        while(temp != NULL){
-            n++;
-            mp[n] = temp;
-            temp = temp->next;
+        
+        // cout<<"cnt ="<<cnt<<endl;
+        
+        int mid = (cnt/2) - 1;
+        
+        // cout<<"mid ="<<mid<<endl;
+        
+        ptr = head;
+        
+        while(mid--)
+        {
+            ptr = ptr->next;
         }
-        n = n/2;
-        mp[n]->next = mp[n+2]; 
+        
+        ptr->next = ptr->next->next;
+        
         return head;
+        
     }
 };
 
