@@ -122,7 +122,6 @@ class Solution
         return buildtree(v,0,v.size());
        //Your code here
     }
-    
 };
 
 //{ Driver Code Starts.
