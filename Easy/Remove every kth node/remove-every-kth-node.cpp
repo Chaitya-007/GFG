@@ -54,27 +54,65 @@ struct Node
 
 class Solution {
     public:
-    Node* deleteK(Node *head,int K){
+    Node* deleteK(Node *head,int k){
       //Your code here
-        if( K == 1 ) return NULL ;
-      int cnt = 1 ;
-      Node* temp = head ;
       
-      
-      
-      while( temp != NULL && temp->next != NULL )
-      {
-          cnt++ ;
-          if( cnt%K == 0 )
-          {
-              temp->next = temp->next->next ;
-              cnt++ ;
-          }
-          
-          temp = temp->next ;
-      }
-      
-      return head ;
+    //   struct Node* ptr = head;
+    //   int totsize = 0;
+       
+    //   while(ptr != nullptr)
+    //   {
+    //       totsize++;
+    //       ptr = ptr->next;
+    //   }
+       
+    //   int cnt = 1;
+    //   int rem = k - 1;
+       
+    //   while(cnt <= totsize)
+    //   {
+    //       if(cnt%k == rem)
+    //       {
+    //           cnt++;
+    //           ptr->next = ptr->next->next;
+    //       }
+           
+    //       cnt++;
+    //       ptr = ptr->next;
+    //   }
+       
+    //   return head;
+    
+    if(k == 1)
+    {
+        return nullptr;
+    }
+    
+    struct Node* temp = head;
+    struct Node* prev = nullptr;
+    int cnt = 0;
+    
+    while(temp != nullptr)
+    {
+        cnt++;
+        
+        if(cnt == k)
+        {
+            prev->next = temp->next;
+            cnt = 0;
+        }
+        
+        else
+        {
+            // when we will be deleting then we don't want to point prev to the node to be deleted
+            prev = temp;
+        }
+        
+        temp = temp->next;
+    }
+    
+    return head;
+    
     }
 };
 
