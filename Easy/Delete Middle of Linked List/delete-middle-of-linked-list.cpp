@@ -35,37 +35,25 @@ class Solution{
     public:
     Node* deleteMid(Node* head)
     {
-        if(!head || !head->next)
+        if(!head->next)
         {
             return nullptr;
         }
-        // Your Code Here
-        int cnt = 0;
         
-        struct Node* ptr = head;
-        
-        while(ptr != nullptr)
-        {
-            cnt++;
-            ptr = ptr->next;
-        }
-        
-        // cout<<"cnt ="<<cnt<<endl;
-        
-        int mid = (cnt/2) - 1;
-        
-        // cout<<"mid ="<<mid<<endl;
-        
-        ptr = head;
-        
-        while(mid--)
-        {
-            ptr = ptr->next;
-        }
-        
-        ptr->next = ptr->next->next;
-        
-        return head;
+       struct Node* fast = head;
+       struct Node* slow = head;
+       struct Node* prev = nullptr;
+       
+       while(fast && fast->next)
+       {
+           fast = fast->next->next;
+           prev = slow;
+           slow = slow->next;
+       }
+       
+       prev->next = slow->next;
+       
+       return head;
         
     }
 };
