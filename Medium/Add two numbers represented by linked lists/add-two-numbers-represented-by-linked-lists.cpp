@@ -56,96 +56,144 @@ struct Node {
 };
 
 */
+
 class Solution
 {
     public:
-    //Function to reverse the linked list
-    struct Node* reverse(struct Node* head){
-        struct Node* temp = head;
-        struct Node* nxt = head;
-        struct Node* prev = NULL;
-        while(temp!=NULL){
-            nxt = temp->next;
-            temp->next = prev;
-            prev = temp;
-            temp = nxt;
-        }
-        return prev;
-    }
-    struct Node* addTwoLists(struct Node* num1, struct Node* num2)
+    //Function to add two numbers represented by linked list.
+    
+    struct Node* reverse(struct Node* head)
     {
-        // removing the non - significant zeros
-        struct Node* t1 = num1;
-        struct Node* t2 = num2;
-        while(t1!=NULL and t1->data==0){
-            t1 = t1->next;
-        }
-        while(t2!=NULL and t2->data==0){
-            t2 = t2->next;
-        }
-        // edge case 
-        if(t1==NULL) return (t2==NULL)? new struct Node(0) : t2;
-        if(t2==NULL) return (t1==NULL)? new struct Node(0) : t1;
-        // reverse the numbers
-        struct Node* revnum1 = reverse(t1);
-        struct Node* revnum2 = reverse(t2);
         
-        // new linked list to store the answer
-        struct Node* dummy = new struct Node(-1);
-        struct Node* ptr = dummy;
+        if(!head || !head->next)
+        {
+            return head;
+        }
         
-        struct Node* temp1 = revnum1;
-        struct Node* temp2 = revnum2;
+        struct Node* curr = head;
+        struct Node* next = head->next;
+        struct Node* prev = nullptr;
+        
+        while(next)
+        {
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+            next = curr->next;
+        }
+        
+        curr->next = prev;
+        
+        return curr;
+    }
+    
+    struct Node* addlist(struct Node* l1, struct Node* l2)
+    {
+        
+        if(!l1)
+        {
+            return l2;
+        }
+        
+        if(!l2)
+        {
+            return l1;
+        }
         
         int carry = 0;
-        while(temp1!=NULL && temp2!=NULL){
-            int val = carry + temp1->data + temp2->data;
-            if(val>9) carry = 1;
-            else carry = 0;
-            val = val%10;
-            struct Node* temp = new struct Node(val);
-            ptr->next = temp;
-            ptr = ptr->next;
-            temp1 = temp1->next;
-            temp2 = temp2->next;
+        struct Node* tail = l1;
+        struct Node* head = l1;
+        
+        while(l1 && l2)
+        {
+            l1->data += l2->data + carry;
+            carry = l1->data/10;
+            l1->data = l1->data%10;
+            tail = l1;
+            l1 = l1->next;
+            l2 = l2->next;
         }
-        // if num2 > num1, to add the remaining digits;
-        if(temp1==NULL){
-            if(carry == 0) ptr->next = temp2;
-            else{
-                while(temp2!=NULL){
-                    int val = carry + temp2->data;
-                    if(val>9) carry = 1;
-                    else carry = 0;
-                    val = val%10;
-                    struct Node* temp = new struct Node(val);
-                    ptr->next = temp;
-                    ptr = ptr->next;
-                    temp2 = temp2->next;
-                }
-                //if there is still a carry at the end
-                if(carry == 1) ptr->next = new struct Node(1);
-            }
+        
+        if(l2 != nullptr)
+        {
+            tail->next = l2;
+            l1 = tail->next;
         }
-        if(temp2 == NULL){
-            if(carry == 0) ptr->next = temp1;
-            else{
-                while(temp1!=NULL){
-                    int val = carry + temp1->data;
-                    if(val>9) carry = 1;
-                    else carry = 0;
-                    val = val%10;
-                    struct Node* temp = new struct Node(val);
-                    ptr->next = temp;
-                    ptr = ptr->next;
-                    temp1 = temp1->next;
-                }
-                // if there is still a carry at the end
-                if(carry == 1) ptr->next = new struct Node(1);
-            }
+        
+        while(l1)
+        {
+            l1->data = l1->data + carry;
+            carry = l1->data/10;
+            l1->data = l1->data%10;
+            tail = l1;
+            l1 = l1->next;
         }
-        // return the reverse
-        return reverse(dummy->next);
+        
+        l1 = tail;
+        
+        while(carry)
+        {
+            l1->next = new Node(carry);
+            l1 = l1->next;
+            carry = l1->data/10;
+            l1->data = l1->data%10; 
+        }
+        
+        return head;
+    }
+    
+    
+    struct Node* addTwoLists(struct Node* num1, struct Node* num2)
+    {
+        // code here
+        
+        
+        
+        // struct Node* temp = nullptr;
+        while(num1->next && num1->data == 0)
+        {
+            // temp = num1;
+            num1 = num1->next;
+        }
+        
+        // temp->next = nullptr;
+        
+        while(num2 && num2->data == 0)
+        {
+            // temp = num2;
+            num2 = num2->next;
+        }
+        
+        // temp->next = nullptr;
+        
+        // if(num1 && num2)
+        // {
+        //     return 0;
+        // }
+        
+        // if(!num1)
+        // {
+        //     return num2;
+        // }
+        
+        // if(!num2)
+        // {
+        //     return num1;
+        // }
+        
+        num1 = reverse(num1);
+        
+        num2 = reverse(num2);
+        
+        // struct Node* ans = addlist(num1,num2);
+        
+        // struct Node* rev = reverse(ans);
+        
+        // return rev;
+        
+        return reverse(addlist(num1,num2));
+        
+        
     }
 };
 
