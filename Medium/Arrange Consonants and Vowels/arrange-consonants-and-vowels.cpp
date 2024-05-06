@@ -59,52 +59,80 @@ class Solution {
     // function should return head to the list after making
     // necessary arrangements
     struct Node* arrangeCV(Node* head) {
-        // Code here
          // Code here
-        Node* vowelStart=NULL;
-        Node* vowelTemp=NULL;
-        Node* consonantStart=NULL;
-        Node* consonantTemp=NULL;
-        Node* temp=head;
-        while(temp!=NULL)
+        // struct Node* left = head;
+        // struct Node* right = head->next;
+        // struct Node* prev = head;
+        
+        // while(right != nullptr)
+        // {
+        //     if(right->data == 'a' || right->data == 'e' || right->data == 'i' || right->data == 'o' || right->data == 'u')
+        //     {
+        //         struct Node* temp = left->next;
+        //         struct Node* ptr = new Node(right->data);
+        //         left->next = ptr;
+        //         ptr->next = temp;
+        //         left = left->next;
+                
+        //         prev->next = right->next;
+        //     }
+        //     else
+        //     {
+        //         prev = right;
+        //     }
+            
+        //     right = right->next;
+        // }
+        
+        // M-2
+        vector<char> cons;
+        vector<char> vowel;
+        
+        struct Node* ptr = head;
+        
+        while(ptr != nullptr)
         {
-            char ch=temp->data;
-            if(ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u')
+            if(ptr->data == 'a' || ptr->data == 'e' || ptr->data == 'i' || ptr->data == 'o' || ptr->data == 'u')
             {
-                if(vowelStart==NULL)
-                {
-                    vowelStart=temp;
-                    vowelTemp=vowelStart;
-                }
-                else
-                {
-                    vowelTemp->next=temp;
-                    vowelTemp=vowelTemp->next;
-                }
+                vowel.emplace_back(ptr->data);
             }
             else
             {
-                if(consonantStart==NULL)
-                {
-                    consonantStart=temp;
-                    consonantTemp=consonantStart;
-                }
-                else
-                {
-                    consonantTemp->next=temp;
-                    consonantTemp=consonantTemp->next;
-                }
+                cons.emplace_back(ptr->data);
             }
-            temp=temp->next;
+            
+            ptr = ptr->next;
         }
-        if(vowelStart==NULL)
+        
+        struct Node* newhead = new Node('z');
+        ptr = newhead;
+        
+        if(vowel.size() > 0)
         {
-            return consonantStart;
+            
+        for(int i = 0; i < vowel.size(); i++)
+        {
+            ptr->next = new Node(vowel[i]);
+            ptr = ptr->next;
+            
         }
-        vowelTemp->next=consonantStart;
-        consonantTemp->next=NULL;
-        head=vowelStart;
-        return head;
+        
+        }
+        
+        if(cons.size() > 0)
+        {
+            for(int i = 0; i < cons.size(); i++)
+            {
+                ptr->next = new Node(cons[i]);
+                ptr = ptr->next;
+            }
+        }
+        
+        newhead = newhead->next;
+        
+        return newhead;
+        
+        
     }
 };
 
