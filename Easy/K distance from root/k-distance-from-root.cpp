@@ -96,18 +96,42 @@ struct Node
 class Solution
 {
     public:
-    void solve(struct Node* root, int k, vector<int>&ans){
-        if(!root)return;
-        if(k==0)ans.push_back(root->data);
-        solve(root->left,k-1,ans);
-        solve(root->right,k-1,ans);
-    }
+    
     vector<int> Kdistance(struct Node *root, int k)
     {
-      if(!root)return {};
-      if(k==0)return {root->data};
       vector<int>ans;
-      solve(root,k,ans);
+      int level = 0;
+      queue<Node*> q;
+      q.push(root);
+      
+      while(!q.empty())
+      {
+          int n = q.size();
+          
+          for(int i = 0; i < n; i++)
+          {
+              Node* node = q.front();
+              q.pop();
+              
+              if(level == k)
+              {
+                  ans.emplace_back(node->data);
+              }
+              
+              if(node->left)
+              {
+                  q.push(node->left);
+              }
+              
+              if(node->right)
+              {
+                  q.push(node->right);
+              }
+          }
+          
+          level++;
+      }
+      
       return ans;
     }
 };
