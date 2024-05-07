@@ -89,39 +89,60 @@ struct Node
     Node* right;
 }; */
 
+
 class Solution
 {
     public:
-    void inorder(Node* root, vector<int>&v){
-        if(root == NULL) return;
-        inorder(root->left,v);
-        v.push_back(root->data);
-        inorder(root->right,v);
+    
+    Node* solve(vector<int> &vec, int& index)
+    {
+        if(vec[index] == -1)
+        {
+            index++;
+            return nullptr;
+        }
+        
+        Node* root = new Node(vec[index]);
+        index++;
+        root->left = solve(vec,index);
+        root->right = solve(vec,index);
+        
+        return root;
     }
+    
+    void preorder(Node* root, vector<int> &vec)
+    {
+        if(root == nullptr)
+        {
+            vec.emplace_back(-1);
+            return;
+        }
+        vec.emplace_back(root->data);
+        preorder(root->left, vec);
+        preorder(root->right, vec);
+        
+        return;
+    }
+    
     //Function to serialize a tree and return a list containing nodes of tree.
     vector<int> serialize(Node *root) 
     {
-        vector<int>v;
-        inorder(root,v);
-        return v;
+        
         //Your code here
+        vector<int> vec;
+        preorder(root,vec);
+        
+        return vec;
     }
-    Node* buildtree(vector<int> &v,int s,int e){
-        if(s >= e) return NULL;
-        auto mid = s + (e-s) /2;
-        Node* root = new Node(v[mid]);
-        root->left = buildtree(v,s,mid);
-        root->right = buildtree(v,mid+1,e);
-        return root;
-    }
+   
     
     //Function to deserialize a list and construct the tree.
     Node *deSerialize(vector<int> &v)
     {
-        return buildtree(v,0,v.size());
+     int index = 0;
+     return solve(v,index);
        //Your code here
     }
-
 };
 
 //{ Driver Code Starts.
