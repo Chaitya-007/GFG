@@ -144,8 +144,7 @@ struct Node
 
 class Solution {
   public:
-  
-  void findpath(struct Node* root, vector<vector<int>> &paths, vector<int> &path)
+     void findpath(struct Node* root, vector<vector<int>> &paths, vector<int> &path)
   {
       if(root == nullptr)
       {
