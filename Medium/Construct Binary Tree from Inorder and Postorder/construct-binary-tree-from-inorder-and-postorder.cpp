@@ -50,20 +50,19 @@ class Solution
 {
     public:
     
-    Node* solve(int in[],int post[], int instart, int inend, int poststart, int postend)
+    struct Node* solve(int in[], int post[], int instart, int inend, int poststart, int postend)
     {
-        if(instart>inend)
+        if(instart > inend)
         {
             return nullptr;
         }
-        
         if(instart == inend)
         {
-            return new Node(in[instart]);
+            return new Node(post[postend]);
         }
         
-        Node* root = new Node(post[postend]);
-        int index = -1;
+        struct Node* root = new Node(post[postend]);
+        int index = 0;
         
         for(int i = instart; i <= inend; i++)
         {
@@ -78,6 +77,7 @@ class Solution
         int right = inend - index;
         
         root->left = solve(in, post, instart, index - 1, poststart, poststart + left - 1);
+        
         root->right = solve(in, post, index + 1, inend, postend - right, postend - 1);
         
         return root;
@@ -86,7 +86,7 @@ class Solution
     //Function to return a tree created from postorder and inoreder traversals.
     Node *buildTree(int in[], int post[], int n) {
         // Your code here
-        return solve(in, post, 0, n-1, 0, n-1);
+        return solve(in,post,0,n-1,0,n-1);
     }
 };
 
