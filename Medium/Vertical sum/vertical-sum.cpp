@@ -93,26 +93,27 @@ Node *left,*right;
 class Solution{
   public:
   
-  map<int, int> mplevel;
+  map<int, int> mpp;
   
-  void preorder(Node* node, int level)
+  void preorder(struct Node* root, int level)
   {
-      if(node == nullptr)
+      if(root == nullptr)
       {
           return;
       }
       
-      mplevel[level] += node->data;
-      preorder(node->left, level - 1);
-      preorder(node->right, level + 1);
+      mpp[level] += root->data;
+      preorder(root->left,level - 1);
+      preorder(root->right, level + 1);
   }
   
     vector <int> verticalSum(Node *root) {
         // add code here.
-        preorder(root,0);
         vector<int> vec;
         
-        for(auto itr : mplevel)
+        preorder(root,0);
+        
+        for(auto itr: mpp)
         {
             vec.emplace_back(itr.second);
         }
