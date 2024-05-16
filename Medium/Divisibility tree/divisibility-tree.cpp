@@ -9,7 +9,7 @@ using namespace std;
 
 class Solution {
 public:
-	 unordered_map<int, vector<int>> adj;
+ unordered_map<int, vector<int>> adj;
     
     int total = 0;
     int solve(int curr, int prev = -1) {
