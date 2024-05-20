@@ -13,88 +13,52 @@ class Solution{
     {
         //Your code here
         //return vector with correct order of elements
-        
         int i = 0;
         int j = 0;
+        vector<int> unionarray;
         
-        vector<int> vec;
-        int element;
-        
-        while(i <= (n-1) && j <= (m-1))
+        while(i < n && j < m)
         {
-            if(i != 0 || j != 0)
+            if(arr1[i] <= arr2[j])
             {
-                 element = vec.back(); 
-            }
-            // gives O(1)
-            
-            if(arr1[i] == arr2[j])
-            {
-                if(i == 0)
+                if(unionarray.size() == 0 || unionarray.back() != arr1[i])
                 {
-                 vec.emplace_back(arr1[i]);   
-                }
-                else if(element != arr1[i])
-                {
-                    vec.emplace_back(arr1[i]);
+                    unionarray.emplace_back(arr1[i]);
                 }
                 i++;
-                j++;
             }
-            else if(arr1[i] < arr2[j])
+            else
             {
-                if(i == 0)
+                if(unionarray.size() == 0 || unionarray.back() != arr2[j])
                 {
-                 vec.emplace_back(arr1[i]);   
+                    unionarray.emplace_back(arr2[j]);
                 }
-                
-                else if(element != arr1[i])
-                {
-                    vec.emplace_back(arr1[i]);
-                }
-                
-                i++;
-            }
-            else 
-            {
-                if(j == 0)
-                {
-                    vec.emplace_back(arr2[j]);
-                }
-                else if(element != arr2[j])
-                {
-                    vec.emplace_back(arr2[j]);
-                }
-                
                 j++;
             }
         }
         
-        while(i <= (n-1))
+        while(i < n)
         {
-            int element = vec.back();
             
-            if(element < arr1[i])
-            {
-                vec.emplace_back(arr1[i]);
-            }
-            
-            i++;
+                if(unionarray.size() == 0 || unionarray.back() != arr1[i])
+                {
+                    unionarray.emplace_back(arr1[i]);
+                }
+                i++;
         }
         
-        while(j <= (m-1))
+         while( j < m)
         {
-            int element = vec.back();
+           
             
-            if(element < arr2[j])
-            {
-                vec.emplace_back(arr2[j]);
-            }
-            
-            j++;
+                if(unionarray.size() == 0 || unionarray.back() != arr2[j])
+                {
+                    unionarray.emplace_back(arr2[j]);
+                }
+                j++;
         }
         
-        return vec;
+        return unionarray;
     }
 };
 
