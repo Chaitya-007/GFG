@@ -13,29 +13,52 @@ class Solution{
     public:
     vector<int> leaders(int a[], int n){
         // Code here
-        vector<int> vec;
         
-        for(int i = 0; i < n; i++)
-        {
-            int flag = 1;
-            for(int j  = i + 1; j < n; j++)
-            {
-                if(a[i] >= a[j])
-                {
+        // Brute Force
+        // T.C => O(N^2)
+        // S.C => O(N)
+        // vector<int> vec;
+        
+        // for(int i = 0; i < n; i++)
+        // {
+        //     int flag = 1;
+        //     for(int j  = i + 1; j < n; j++)
+        //     {
+        //         if(a[i] >= a[j])
+        //         {
                     
-                }
-                else
-                {
-                    flag = 2;
-                    break;
-                }
-            }
+        //         }
+        //         else
+        //         {
+        //             flag = 2;
+        //             break;
+        //         }
+        //     }
             
-            if(flag == 1)
+        //     if(flag == 1)
+        //     {
+        //         vec.emplace_back(a[i]);
+        //     }
+        // }
+        
+        // return vec;
+        
+        // Better
+        
+        vector<int> vec;
+        int maxo = a[n-1];
+        vec.emplace_back(maxo);
+        
+        for(int i = n - 2; i >= 0 ; i--)
+        {
+            if(a[i] >= maxo)
             {
                 vec.emplace_back(a[i]);
+                maxo = a[i];
             }
         }
+        
+        reverse(vec.begin(),vec.end());
         
         return vec;
         
