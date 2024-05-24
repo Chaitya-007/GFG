@@ -5,7 +5,7 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-   int solve(vector<int> &arr, int i, int d, vector<vector<int>>&dp, int bais, int left){
+       int solve(vector<int> &arr, int i, int d, vector<vector<int>>&dp, int bais, int left){
         if(i == arr.size()){
             return d == 0? 1: 0;
         }
