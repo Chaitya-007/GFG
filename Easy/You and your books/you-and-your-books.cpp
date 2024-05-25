@@ -30,8 +30,8 @@ class Solution {
         }
         
         return maxbooks;
-    }
     
+    }
 };
 
 //{ Driver Code Starts.
