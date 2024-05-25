@@ -13,7 +13,7 @@ class Solution {
     /*You are requried to complete this method */
     long long max_Books(int arr[], int n, int k) {
         // Your code here
-        long long maxbooks = 0LL;
+         long long maxbooks = 0LL;
         long long sum = 0LL;
         
         for(int i = 0; i < n; i++)
@@ -31,6 +31,7 @@ class Solution {
         
         return maxbooks;
     }
+    
 };
 
 //{ Driver Code Starts.
