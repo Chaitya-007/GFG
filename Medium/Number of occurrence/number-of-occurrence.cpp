@@ -12,15 +12,70 @@ public:
 		of occurrences of x, otherwise returns 0. */
 	int count(int arr[], int n, int x) {
 	    // code here
-	    int lbind = lower_bound(arr,arr+n,x) - arr;
-	    if(lbind == n)
-	    {
-	        return 0;
-	    }
-	    int ubind = upper_bound(arr,arr+n,x) - arr;
-	    int highind = ubind - 1;
+	   // int lbind = lower_bound(arr,arr+n,x) - arr;
+	   // if(lbind == n)
+	   // {
+	   //     return 0;
+	   // }
+	   // int ubind = upper_bound(arr,arr+n,x) - arr;
+	   // int highind = ubind - 1;
 	    
-	    return (highind - lbind + 1);
+	   // return (highind - lbind + 1);
+	   
+	   int low = 0;
+	   int high = n - 1;
+	   int firstind = -1;
+	   
+	   while(low <= high)
+	   {
+	       int mid = low + (high - low)/2;
+	       
+	       if(arr[mid] == x)
+	       {
+	           firstind = mid;
+	           high = mid - 1;
+	       }
+	       else if(arr[mid] < x)
+	       {
+	           low = mid + 1;
+	       }
+	       else
+	       {
+	           high = mid - 1;
+	       }
+	   }
+	   
+	   if(firstind == -1)
+	   {
+	       return 0;
+	   }
+	   
+	   low = 0;
+	   high = n - 1;
+	   int lastind = -1;
+	   
+	   while(low <= high)
+	   {
+	       int mid = low + (high - low)/2;
+	       
+	       if(arr[mid] == x)
+	       {
+	           lastind = mid;
+	           low = mid + 1;
+	       }
+	       else if(arr[mid] > x)
+	       {
+	           high = mid - 1;
+	       }
+	       else
+	       {
+	           low = mid + 1;
+	       }
+	   }
+	   
+	   //int lastind = upbound - 1;
+	   
+	   return (lastind - firstind + 1);
 	}
 };
 
