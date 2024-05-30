@@ -7,8 +7,7 @@ using namespace std;
 
 class Solution {
   public:
-  
-  int mod=1e9+7;
+    int mod=1e9+7;
   int help(string a,string b,int i,int j,vector<vector<int>>&dp){
       if(j==b.size())return 1;
       if(i==a.size())return 0;
