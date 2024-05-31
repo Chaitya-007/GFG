@@ -7,28 +7,59 @@ class Solution {
   public:
     vector<long long> lcmAndGcd(long long A , long long B) {
         // code here
+        // long long lcm;
+        // long long gcd;
+        
+        // M-1
+        // for(long long i = 1; i <= min(A,B); i++)
+        // {
+        //     if(A%i == 0 && B%i == 0)
+        //     {
+        //         gcd = i;
+        //     }
+        // }
+        
+        // for(long long i = min(A,B) ; i >= 1; i--)
+        // {
+        //     if(A%i == 0 && B%i == 0)
+        //     {
+        //         gcd = i;
+        //         break;
+        //     }
+        // }
+        
         long long product = A*B;
         
-        long long r = product;
-        
-        while(true)
+        while(A > 0 && B > 0)
         {
-            r = A%B;
-            if(r == 0)
+            if(A > B)
             {
-                break;
+                A = A % B; 
             }
-            A = B;
-            B = r;
+            else
+            {
+                B = B % A;
+            }
         }
         
-        vector<long long> vec;
-        long long lcm = product/B;
-        vec.emplace_back(lcm);
-        vec.emplace_back(B);
+        
+        long long lcm;
+        long long gcd;
+        
+        if(A==0ll)
+        {
+            gcd = B;
+        }
+        else
+        {
+            gcd = A;
+        }
+        
+        lcm = product/gcd;
+        
+        vector<long long> vec = {lcm,gcd};
         
         return vec;
-        
     }
 };
 
