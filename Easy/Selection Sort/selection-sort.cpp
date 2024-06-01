@@ -16,26 +16,29 @@ class Solution
     int select(int arr[], int i, int n)
     {
         // code here such that selectionSort() sorts arr[]
-        int mino = i;
+        int minind = i;
         for(int j = i; j < n; j++)
         {
-            if(arr[mino] > arr[j])
+            if(arr[minind] > arr[j])
             {
-                mino = j;
+                minind = j;
             }
         }
         
-        return mino;
+        return minind;
+        
     }
      
     void selectionSort(int arr[], int n)
     {
        //code here
-       for(int i = 0; i <= (n - 2); i++)
+       for(int i = 0; i < n; i++)
        {
-           int mini = select(arr,i,n);
-           swap(arr[mini],arr[i]);
+           int minind = select(arr,i,n);
+           swap(arr[minind],arr[i]);
+           
        }
+      
     }
 };
 
