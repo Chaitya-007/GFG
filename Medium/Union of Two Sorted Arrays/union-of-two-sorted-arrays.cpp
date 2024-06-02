@@ -15,23 +15,23 @@ class Solution{
         //return vector with correct order of elements
         int i = 0;
         int j = 0;
-        vector<int> unionarray;
+        vector<int> vec;
         
         while(i < n && j < m)
         {
             if(arr1[i] <= arr2[j])
             {
-                if(unionarray.size() == 0 || unionarray.back() != arr1[i])
+                if(vec.size() == 0 || vec.back() != arr1[i])
                 {
-                    unionarray.emplace_back(arr1[i]);
+                    vec.emplace_back(arr1[i]);
                 }
                 i++;
             }
             else
             {
-                if(unionarray.size() == 0 || unionarray.back() != arr2[j])
+                if(vec.size() == 0 || vec.back() != arr2[j])
                 {
-                    unionarray.emplace_back(arr2[j]);
+                    vec.emplace_back(arr2[j]);
                 }
                 j++;
             }
@@ -39,26 +39,23 @@ class Solution{
         
         while(i < n)
         {
-            
-                if(unionarray.size() == 0 || unionarray.back() != arr1[i])
+           if(vec.size() == 0 || vec.back() != arr1[i])
                 {
-                    unionarray.emplace_back(arr1[i]);
+                    vec.emplace_back(arr1[i]);
                 }
-                i++;
+                i++; 
         }
         
-         while( j < m)
+        while(j < m)
         {
-           
-            
-                if(unionarray.size() == 0 || unionarray.back() != arr2[j])
+            if(vec.size() == 0 || vec.back() != arr2[j])
                 {
-                    unionarray.emplace_back(arr2[j]);
+                    vec.emplace_back(arr2[j]);
                 }
                 j++;
         }
         
-        return unionarray;
+        return vec;
     }
 };
 
