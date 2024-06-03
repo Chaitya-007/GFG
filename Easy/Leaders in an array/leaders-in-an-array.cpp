@@ -53,12 +53,13 @@ class Solution{
         {
             if(a[i] >= maxo)
             {
-                vec.emplace_back(a[i]);
+                // vec.emplace_back(a[i]);
+                vec.insert(vec.begin(),a[i]);
                 maxo = a[i];
             }
         }
         
-        reverse(vec.begin(),vec.end());
+        // reverse(vec.begin(),vec.end());
         
         return vec;
         
