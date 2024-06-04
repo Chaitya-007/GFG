@@ -8,19 +8,32 @@ using namespace std;
 class Solution {
   public:
     string binaryNextNumber(string s) {
-        // code here.
-                int carry=1,n=s.length();
-        string ans;
-        for(int i=n-1;i>=0;i--){
-            int d=s[i]-'0';
-            ans=to_string(d^carry)+ans;
-            carry&=d;
+  int j=0;
+        while(s[j]=='0'&& j<s.size()){
+            j++;
         }
-        if(carry) ans='1'+ans;
-        // To remove leading zeros
-        int i=0;
-        for(;i<ans.length();i++) if(ans[i]!='0') break;
-        return string(begin(ans)+i,end(ans));
+        string ans="";
+        int carry=1;
+        for(int i=s.size()-1;i>=j;i--){
+            int sum=carry+(s[i]-'0');
+            if(sum==2){
+                
+                ans='0'+ans;
+                carry=1;
+            }
+            else {
+                char ch=sum+'0';
+                ans=ch+ans;
+                carry=0;
+                
+            }
+            
+        }
+        if(carry){
+            ans='1'+ans;
+        }
+        return ans;
+
     }
 };
 
