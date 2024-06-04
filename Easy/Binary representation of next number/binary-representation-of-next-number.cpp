@@ -8,7 +8,8 @@ using namespace std;
 class Solution {
   public:
     string binaryNextNumber(string s) {
-  int j=0;
+        // code here.
+        int j=0;
         while(s[j]=='0'&& j<s.size()){
             j++;
         }
@@ -33,7 +34,6 @@ class Solution {
             ans='1'+ans;
         }
         return ans;
-
     }
 };
 
