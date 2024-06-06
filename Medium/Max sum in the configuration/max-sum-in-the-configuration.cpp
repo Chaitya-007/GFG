@@ -9,9 +9,7 @@ class Solution {
   public:
     long long max_sum(int a[], int n) {
         // Your code here
-        // This solution is also correct but this will give u TLE
-        
-         long sum =0;
+          long sum =0;
         long prev = 0;
         for(int i=0; i<n; i++){
             prev += (long)i*a[i];
