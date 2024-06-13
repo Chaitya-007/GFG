@@ -7,7 +7,7 @@ using namespace std;
 
 class Solution {
   public:
-      int m = 1e9+7;
+     int m = 1e9+7;
     int padovanSequence(int n) {
         // code here.
           int a = 1, b = 1, c = 1;
