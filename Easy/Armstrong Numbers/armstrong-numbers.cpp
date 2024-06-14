@@ -10,7 +10,7 @@ class Solution {
   public:
     string armstrongNumber(int n) {
         // code here
-        int temp = n;
+         int temp = n;
         int arm = 0;
         
         while(n > 0)
