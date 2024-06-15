@@ -7,7 +7,7 @@ using namespace std;
 class Solution {
   public:
   
-  long long dfs(int i,vector<vector<int>>&adj,int n,vector<vector<long long>>&dp){
+long long dfs(int i,vector<vector<int>>&adj,int n,vector<vector<long long>>&dp){
       if(n==0){
           return 1;
       }
@@ -26,7 +26,7 @@ class Solution {
   }
   
   
-    long long getCount(int n) {
+   long long getCount(int n) {
         // Your code goes here
          vector<vector<int>>adj(10,vector<int>());
         adj[0] = {0, 8};
@@ -48,6 +48,7 @@ class Solution {
         }
         return ans;
     }
+    
 };
 
 //{ Driver Code Starts.
