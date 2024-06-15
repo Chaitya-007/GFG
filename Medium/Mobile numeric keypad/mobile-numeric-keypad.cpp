@@ -6,8 +6,7 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-     
-long long dfs(int i,vector<vector<int>>&adj,int n,vector<vector<long long>>&dp){
+  long long dfs(int i,vector<vector<int>>&adj,int n,vector<vector<long long>>&dp){
       if(n==0){
           return 1;
       }
@@ -48,7 +47,6 @@ long long dfs(int i,vector<vector<int>>&adj,int n,vector<vector<long long>>&dp){
         }
         return ans;
     }
-    
 };
 
 //{ Driver Code Starts.
