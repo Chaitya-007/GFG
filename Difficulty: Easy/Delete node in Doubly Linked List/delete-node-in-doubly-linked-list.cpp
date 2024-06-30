@@ -37,7 +37,7 @@ class Solution {
   public:
     Node* deleteNode(Node* head, int x) {
         // Your code here
-              Node * temp = head;
+                Node * temp = head;
         
         int cnt = 1;
         
