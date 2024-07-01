@@ -67,7 +67,7 @@ void reverses(Node **head) {
 // } Driver Code Ends
 class Solution {
   public:
-     void convert(Node *head, TreeNode *&root) {
+      void convert(Node *head, TreeNode *&root) {
         
         root = new TreeNode(head->data);
         Node* temp = head;
