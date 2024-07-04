@@ -91,8 +91,7 @@ void preorder(Node* root, vector<int>& temp) {
 // } Driver Code Ends
 class Solution {
   public:
-  
-  string helper(Node *root, vector<Node*> &ans, 
+     string helper(Node *root, vector<Node*> &ans, 
                 unordered_map<string,int> &mp)
     {
         string temp = "";
