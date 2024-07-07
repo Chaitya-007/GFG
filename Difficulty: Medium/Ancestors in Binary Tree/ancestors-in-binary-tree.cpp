@@ -99,7 +99,6 @@ struct Node
 class Solution {
   public:
     // Function should return all the ancestor of the target node
-    
      void helper(struct Node* root,int target,vector<int> &ans,vector<int> &ans1){
         if(root==nullptr ){
             return;
