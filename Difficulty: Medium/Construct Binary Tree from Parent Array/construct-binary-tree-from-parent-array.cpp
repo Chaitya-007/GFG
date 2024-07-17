@@ -77,7 +77,7 @@ struct Node
 class Solution {
   public:
     // Function to construct binary tree from parent array.
-    void dfs(Node* &root, unordered_map<int, pair<int, int> >& mp) {
+   void dfs(Node* &root, unordered_map<int, pair<int, int> >& mp) {
         
         if(mp.find(root->data) != mp.end()) {
             root->left = new Node(mp[root->data].first);
