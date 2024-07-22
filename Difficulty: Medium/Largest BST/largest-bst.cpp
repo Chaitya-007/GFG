@@ -101,7 +101,7 @@ struct Node {
 
 class Solution{
     public:
-     int res = 1;
+      int res = 1;
     vector<int> rec( Node* root ){
         vector<int> l = {1,0,INT_MIN,INT_MAX}, r = {1,0,INT_MIN,INT_MAX};
         if ( root->left ) l = rec(root->left);
