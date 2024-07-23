@@ -108,9 +108,7 @@ class Node
 
 */
 class Solution {
-    // Function to return a list of integers denoting the node
-    // values of both the BST in a sorted order.
-      public List<Integer> merge(Node root1, Node root2) {
+   public List<Integer> merge(Node root1, Node root2) {
         List<Integer> list = new ArrayList<>();
         helper(root1, list);
         helper(root2, list);
