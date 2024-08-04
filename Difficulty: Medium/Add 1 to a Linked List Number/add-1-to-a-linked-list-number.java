@@ -96,9 +96,14 @@ class Solution {
         
         while(ptr != null)
         {
+           
             int sum = ptr.data + carry;
             carry = sum/10;
             ptr.data = sum%10;
+            if(carry == 0)
+             {
+                 break;
+             }
             prev = ptr;
             ptr = ptr.next;
         }
