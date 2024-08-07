@@ -55,9 +55,78 @@ public:
         
         // Using recursion
         // return fun(n-1,sum,arr);
+        // T.C -> 2^n
+        // S.C -> O(N)
         
-        vector<vector<int>> dp(n,vector<int> (sum + 1, -1));
-        return funDP(n-1,sum,arr,dp);
+        // Using dp
+        // vector<vector<int>> dp(n,vector<int> (sum + 1, -1));
+        // return funDP(n-1,sum,arr,dp);
+        // T.C -> O(N*target)
+        // S.C -> O(N) + O(M*N)
+        
+        // Tabulation
+        // T.C -> O(N*target)
+        // S.C -> O(N * target)
+        
+    
+        // vector<vector<bool>> dp(n, vector<bool>(sum + 1, 0));
+        
+        // for(int i = 0; i < n; i++)
+        // {
+        //     dp[i][0] = true;
+        // }
+        
+        // dp[0][arr[0]] = true;
+        
+        // for(int ind = 1; ind < n; ind++)
+        // {
+        //     for(int target = 1; target <= sum; target++)
+        //     {
+        //         bool notTake = dp[ind - 1][target];
+        //         bool take = false;
+        //         if(arr[ind] <= target)
+        //         {
+        //             take = dp[ind - 1][target - arr[ind]];
+        //         }
+                
+        //         dp[ind][target] = (take | notTake);
+        //     }
+        // }
+        
+        
+        // return dp[n-1][sum];
+        
+        vector<bool> prev(sum+1,0);
+        vector<bool> curr(sum+1,0);
+        
+        prev[0] = curr[0] = true;
+        
+        if(arr[0] <= sum)
+        {
+            
+        prev[arr[0]] = true;
+        }
+        
+        for(int ind = 1; ind < n; ind++)
+        {
+            for(int target = 1; target <= sum; target++)
+            {
+                bool notTake = prev[target];
+                bool take = false;
+                if(arr[ind] <= target)
+                {
+                    take = prev[target - arr[ind]];
+                }
+                
+                curr[target] = (take | notTake);
+            }
+            
+            prev = curr;
+        }
+        
+        return prev[sum];
+        
+        
         
     }
 };
