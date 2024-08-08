@@ -93,7 +93,7 @@ struct Node
 // Should return true if tree is Sum Tree, else false
 class Solution {
   public:
-     int solve(Node *root){
+       int solve(Node *root){
         if(root==NULL) return 0;
         if(root->left==NULL && root->right==NULL) return root->data;
         int leftSum = solve(root->left);
