@@ -56,139 +56,32 @@ class Node{
 
 class Solution {
     
-    // public Node reverseList(Node head)
-    // {
-    //     if(head == null || head.next == null)
-    //     {
-    //         return head;
-    //     }
-        
-    //     Node curr = head;
-    //     Node forward = head;
-    //     Node prev = null;
-        
-    //     while(curr != null)
-    //     {
-    //         forward = curr.next;
-    //         curr.next = prev;
-    //         prev = curr;
-    //         curr = forward;
-    //     }
-        
-    //     return prev;
-    // }
-    
-    public int helper(Node temp)
+    public int fun(Node temp)
     {
-        if(temp == null)
-        {
-            return 1;
-        }
+        if(temp == null) return 1;
         
-        int carry = helper(temp.next);
-        temp.data = temp.data + carry;
+        int carry = fun(temp.next);
         
-        if(temp.data < 10)
+        if((temp.data + carry) < 10 )
         {
-            return 0;
+            temp.data = temp.data + carry;
+           return 0;
         }
         
         temp.data = 0;
-        return 1;
+        return carry;
     }
     
     public Node addOne(Node head) {
         // code here.
-        // Recursive Solution
-        int carry = helper(head);
+        int carry = fun(head);
         if(carry == 1)
         {
-            Node newNode = new Node(carry);
-            newNode.next = head;
-            return newNode;
+            Node temp = new Node(carry);
+            temp.next = head;
+            head = temp;
         }
         
         return head;
-        
-        
-        
-        // Iterative Solution
-        // T.C -> O(3N)
-        // S.C -> O(1)
-        // if(head == null)
-        // {
-        //     return head;
-        // }
-        
-        
-        // Node newHead = reverseList(head);
-        
-        // Node ptr = newHead;
-        // int carry = 1;
-     
-        
-        // while(ptr != null)
-        // {
-           
-        //     int sum = ptr.data + carry;
-        //     carry = sum/10;
-        //     ptr.data = sum%10;
-        //     if(carry == 0)
-        //      {
-        //          break;
-        //      }
-         
-        //     ptr = ptr.next;
-        // }
-        
-        // if(carry == 1)
-        // {
-        //     Node temp = new Node(carry);
-        //     head = reverseList(newHead);
-        //     temp.next = head;
-        //     return temp;
-        // }
-        
-        // head = reverseList(newHead);
-        
-        
-        // return head;
-        
-        
-        // Brute Force
-        // if(head == null)
-        // {
-        //     return head;
-        // }
-        
-        // int num = 0;
-        
-        
-        // Node ptr = head;
-        
-        
-        // while(ptr != null)
-        // {
-        //     num = ptr.data + num*10;
-        //     ptr = ptr.next;
-        // }
-        
-        // num = num + 1;
-        
-        // Node newHead = new Node(-1);
-        // Node temp = newHead;
-        
-        // while(num > 0)
-        // {
-        //     int rem = num%10;
-        //     temp.next = new Node(rem);
-        //     temp = temp.next;
-        //     num = num/10;
-        // }
-        
-        // Node result = reverseList(newHead.next);
-        
-        // return result;
-        
     }
 }
