@@ -55,8 +55,7 @@ class Node{
 */
 
 class Solution {
-    
-    public int fun(Node temp)
+      public int fun(Node temp)
     {
         if(temp == null) return 1;
         
