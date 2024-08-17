@@ -6,7 +6,6 @@ using namespace std;
 class Solution{
 
 	public:
-	
 	int fun(int ind,int sum, int arr[], vector<vector<int>> &dp)
 	{
 	    if(ind == 0)
