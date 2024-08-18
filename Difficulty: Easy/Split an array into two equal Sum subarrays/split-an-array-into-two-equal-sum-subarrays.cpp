@@ -6,11 +6,9 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-  
-  
     bool canSplit(vector<int>& arr) {
         // code here
-        int n = arr.size();
+         int n = arr.size();
         int totalSum = 0;
         totalSum = accumulate(arr.begin(),arr.end(),0);
         if(totalSum%2 == 1) return false;
@@ -26,7 +24,6 @@ class Solution {
         }
         
         return false;
-        
     }
 };
 
