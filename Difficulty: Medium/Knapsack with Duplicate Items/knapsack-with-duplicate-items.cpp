@@ -15,14 +15,8 @@ public:
         
         if(ind == 0)
         {
-            if(wt[0] <= W)
-            {
-                return (W/wt[0]) * val[0];
-            }
-            else
-            {
-                return 0;
-            }
+
+         return (W/wt[0]) * val[0];
         }
         
         int notTake = fun(ind - 1, W, val, wt);
@@ -41,14 +35,7 @@ public:
         
         if(ind == 0)
         {
-            if(wt[0] <= W)
-            {
-                return (W/wt[0]) * val[0];
-            }
-            else
-            {
-                return 0;
-            }
+           return (W/wt[0]) * val[0];
         }
         
         if(dp[ind][W] != -1) return dp[ind][W];
