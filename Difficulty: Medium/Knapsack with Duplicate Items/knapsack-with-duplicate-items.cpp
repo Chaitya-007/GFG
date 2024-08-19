@@ -55,8 +55,85 @@ public:
     {
         // code here
         // return fun(N-1,W,val,wt);
-        vector<vector<int>> dp(N, vector<int> (W+1,-1));
-        return fundp(N-1, W, val, wt, dp);
+        // vector<vector<int>> dp(N, vector<int> (W+1,-1));
+        // return fundp(N-1, W, val, wt, dp);
+        
+        // vector<vector<int>> dp(N, vector<int> (W+1,0));
+        
+        // for(int target = 0; target <= W; target++)
+        // {
+        //     dp[0][target] = (target/wt[0]) * val[0];
+        // }
+        
+        // for(int ind = 1; ind < N; ind++)
+        // {
+        //     for(int target = 0; target <= W; target++)
+        //     {
+        //         int notTake = dp[ind - 1][target];
+        //         int take = INT_MIN;
+                
+        //         if(wt[ind] <= target)
+        //         {
+        //             take = val[ind] + dp[ind][target - wt[ind]];
+        //         }
+                
+        //          dp[ind][target] = max(take, notTake);
+        //     }
+        // }
+        
+        // return dp[N-1][W];
+        
+        // vector<int> prev(W+1,0);
+        // vector<int> curr(W+1,0);
+        
+        // for(int target = 0; target <= W; target++)
+        // {
+        //     prev[target] = (target/wt[0]) * val[0];
+        // }
+        
+        // for(int ind = 1; ind < N; ind++)
+        // {
+        //     for(int target = 0; target <= W; target++)
+        //     {
+        //         int notTake = prev[target];
+        //         int take = INT_MIN;
+                
+        //         if(wt[ind] <= target)
+        //         {
+        //             take = val[ind] + curr[target - wt[ind]];
+        //         }
+                
+        //          curr[target] = max(take, notTake);
+        //     }
+        //     prev = curr;
+        // }
+        
+        // return prev[W];
+        
+        vector<int> prev(W+1,0);
+        
+        for(int target = 0; target <= W; target++)
+        {
+            prev[target] = (target/wt[0]) * val[0];
+        }
+        
+        for(int ind = 1; ind < N; ind++)
+        {
+            for(int target = 0; target <= W; target++)
+            {
+                int notTake = prev[target];
+                int take = INT_MIN;
+                
+                if(wt[ind] <= target)
+                {
+                    take = val[ind] + prev[target - wt[ind]];
+                }
+                
+                 prev[target] = max(take, notTake);
+            }
+        }
+        
+        return prev[W];
     }
 };
 
