@@ -13,11 +13,10 @@ class Solution {
     // arr : given array
     // k : find kth smallest element and return using this function
     int kthSmallest(vector<int> &arr, int k) {
-        // code here
-        
-        priority_queue<int> pq;
+        // code here        priority_queue<int> pq;
         
         int n = arr.size();
+        priority_queue<int>pq;
         
         for(int i = 0; i < n; i++)
         {
