@@ -6,7 +6,7 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    int binarySearch(int key, vector<int>& brr){
+       int binarySearch(int key, vector<int>& brr){
         int low = 0, high = brr.size()-1, mid, index = -1;
         
         while(low<=high){
