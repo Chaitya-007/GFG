@@ -5,8 +5,9 @@ using namespace std;
 
 // } Driver Code Ends
 class Solution {
-    public:
-    int fun(int i, int j, string p, string s)
+  public:
+    /*You are required to complete this method*/
+       int fun(int i, int j, string p, string s)
     {
         if(i < 0 && j < 0) return true;
         if(i < 0 && j >=0) return false;
