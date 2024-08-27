@@ -7,7 +7,7 @@ using namespace std;
 class Solution {
   public:
     /*You are required to complete this method */
-     void findpse(vector<int> &pse,vector<int> &arr,int n)
+    void findpse(vector<int> &pse,vector<int> &arr,int n)
     {
         stack<int> st;
         for(int i=0;i<n;i++)
