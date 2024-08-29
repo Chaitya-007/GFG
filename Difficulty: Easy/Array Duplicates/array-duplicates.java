@@ -49,27 +49,22 @@ class GFG {
 class Solution {
     public static ArrayList<Integer> duplicates(int[] arr) {
         // code here
-        Map<Integer,Integer> mp = new HashMap<Integer,Integer>();
+        int n = arr.length;
+        int[] temp = new int[n];
+        Arrays.fill(temp,0);
         
-        for(int i = 0; i < arr.length; i++)
+        for(int i = 0; i < n ; i++)
         {
-            if(mp.containsKey(arr[i]))
-            {
-                mp.put(arr[i], mp.get(arr[i]) + 1);
-            }
-            else
-            {
-                mp.put(arr[i],1);
-            }
+            temp[arr[i]] = temp[arr[i]] + 1;
         }
         
         ArrayList<Integer> list = new ArrayList<Integer>();
         
-        for(Map.Entry<Integer,Integer> e : mp.entrySet())
+        for(int i = 0; i < n; i++)
         {
-            if(e.getValue() > 1)
+            if(temp[i] > 1)
             {
-                list.add(e.getKey());
+                list.add(i);
             }
         }
         
@@ -77,8 +72,6 @@ class Solution {
         {
             list.add(-1);
         }
-        
-        Collections.sort(list);
         
         return list;
     }
