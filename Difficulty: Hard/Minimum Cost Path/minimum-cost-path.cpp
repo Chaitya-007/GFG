@@ -8,7 +8,7 @@ using namespace std;
 class Solution
 {
     public:
-      int minimumCostPath(vector<vector<int>>& grid){
+       int minimumCostPath(vector<vector<int>>& grid){
         priority_queue<pair<int,pair<int,int>>, 
                     vector<pair<int,pair<int,int>>>, 
                             greater<pair<int,pair<int,int>>>> pq;
