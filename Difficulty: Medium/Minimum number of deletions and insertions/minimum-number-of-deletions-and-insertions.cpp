@@ -10,7 +10,7 @@ class Solution{
 	int minOperations(string str1, string str2) 
 	{ 
 	    // Your code goes here
-	    int n = str1.length();
+	     int n = str1.length();
 	    int m = str2.length();
 	    vector<int> prev(m+1,0);
 	    vector<int> curr(m+1,0);
@@ -34,6 +34,7 @@ class Solution{
 	    
 	    int len = prev[m];
 	    return (n + m - (2*(len)));
+	    
 	} 
 };
 
