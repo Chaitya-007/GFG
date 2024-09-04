@@ -5,12 +5,9 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
 	public:
-	
-	
 		int nthStair(int n){
 		    //  Code here
-		    
-            return n/2 + 1;
+		    return n/2 + 1;
 		}
 };
 
