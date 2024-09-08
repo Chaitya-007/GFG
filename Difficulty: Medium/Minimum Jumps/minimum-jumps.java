@@ -36,7 +36,7 @@ public class Main {
 
 
 class Solution {
-    static int minJumps(int[] arr) {
+       static int minJumps(int[] arr) {
         if (arr.length <= 1) {
             return 0;           // If array has only one element, no jumps are needed
         }
