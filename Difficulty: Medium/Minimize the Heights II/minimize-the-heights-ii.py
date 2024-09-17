@@ -18,6 +18,7 @@ class Solution:
             result=min(result, max_height-min_height)
         return result
 
+
 #{ 
  # Driver Code Starts
 #Initial Template for Python 3
