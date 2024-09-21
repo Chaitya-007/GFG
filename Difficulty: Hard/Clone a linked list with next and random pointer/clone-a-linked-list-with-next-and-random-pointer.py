@@ -26,7 +26,7 @@ class Solution:
             d[temp].random = d[temp.random]
             temp = temp.next
         
-        return d[head]    
+        return d[head]   
 
 
 
