@@ -9,7 +9,7 @@ class Solution {
   public:
     vector<int> findTwoElement(vector<int>& arr) {
         // code here
-        unordered_map<int, int> mp;
+         unordered_map<int, int> mp;
         int element = 0;
         vector<int> res;
         
@@ -35,8 +35,6 @@ class Solution {
         }
         
         return res;
-        
-        
     }
 };
 
