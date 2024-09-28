@@ -6,52 +6,19 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-  
-    int fun(int ind, vector<int> &arr,int k)
-    {
-        if(ind == 0) return 0;
-        
-        int mmsteps = INT_MAX;
-        
-        for(int j = 1; j <= k; j++)
-        {
-            if(ind - j >= 0)
-            {
-                int jumps = fun(ind - j,arr,k) + abs(arr[ind] - arr[ind - j]);
-                mmsteps = min(mmsteps,jumps);
-            }
-        }
-        
-        return mmsteps;
-    }
-    
-     int fundp(int ind, vector<int> &arr,int k, vector<int> &dp)
-    {
-        if(ind == 0) return 0;
-        
-        if(dp[ind] != -1) return dp[ind];
-        int mmsteps = INT_MAX;
-        
-        for(int j = 1; j <= k; j++)
-        {
-            if(ind - j >= 0)
-            {
-                int jumps = fundp(ind - j,arr,k,dp) + abs(arr[ind] - arr[ind - j]);
-                mmsteps = min(mmsteps,jumps);
-            }
-        }
-        
-        return dp[ind] = mmsteps;
-    }
-  
-    int minimizeCost(vector<int>& arr, int& k) {
+    int minimizeCost(int k, vector<int>& arr) {
         // Code here
-        int n = arr.size();
-        // return fun(n-1,arr,k);
-        
-        vector<int> dp(n,-1);
-        return fundp(n-1,arr,k,dp);
-        
+           int n = arr.size();
+        vector<int> dp(n, INT_MAX); 
+        dp[0] = 0; 
+
+        for (int i = 0; i < n; ++i) {
+            for (int jump = 1; jump <= k && i + jump < n; ++jump) {
+                dp[i + jump] = min(dp[i + jump], dp[i] + abs(arr[i] - arr[i + jump]));
+            }
+        }
+
+        return dp[n - 1];  // Return the minimum cost to reach the last index
     }
 };
 
@@ -74,7 +41,7 @@ int main() {
             arr.push_back(number);
         }
         Solution obj;
-        int res = obj.minimizeCost(arr, k);
+        int res = obj.minimizeCost(k, arr);
         cout << res << endl;
         // string tl;
         // getline(cin, tl);
