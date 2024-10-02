@@ -9,7 +9,7 @@ class Solution {
   public:
     int rotateDelete(vector<int> &arr) {
         // Your code here
-         deque<int>dq(arr.begin(),arr.end());
+          deque<int>dq(arr.begin(),arr.end());
         int k=1;
         int n=arr.size();
         
