@@ -6,7 +6,7 @@ using namespace std;
 class Solution {
   public:
     // Function to find the number of islands.
-   void solve(int i,int j, vector<vector<int>>&visited, vector<vector<char>>&grid, int n, int m){
+    void solve(int i,int j, vector<vector<int>>&visited, vector<vector<char>>&grid, int n, int m){
         visited[i][j]=1;
         int dx[]={-1,-1,-1,0,0,1,1,1};
         int dy[]={-1,0,1,-1,1,-1,0,1};
