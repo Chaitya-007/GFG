@@ -36,7 +36,9 @@ class GfG {
             Solution obj = new Solution();
             head = obj.addOne(head);
             printList(head);
-        }
+        
+System.out.println("~");
+}
     }
 }
 // } Driver Code Ends
@@ -55,32 +57,40 @@ class Node{
 */
 
 class Solution {
-      public int fun(Node temp)
+    
+    public int fun(Node ptr)
     {
-        if(temp == null) return 1;
+        if(ptr == null) return 1;
         
-        int carry = fun(temp.next);
+        int carry = fun(ptr.next);
         
-        if((temp.data + carry) < 10 )
+        if(ptr.data + carry < 10)
         {
-            temp.data = temp.data + carry;
-           return 0;
+        int sum = ptr.data + carry;
+        ptr.data = (sum%10);
+            return 0;
         }
         
-        temp.data = 0;
-        return carry;
+        ptr.data = 0;
+        return 1;
+        
+        
     }
+    
     
     public Node addOne(Node head) {
         // code here.
         int carry = fun(head);
+        
         if(carry == 1)
         {
-            Node temp = new Node(carry);
-            temp.next = head;
-            head = temp;
+            Node ptr = new Node(1);
+            ptr.next = head;
+            head = ptr;
+            ptr = null;
         }
         
         return head;
+        
     }
 }
