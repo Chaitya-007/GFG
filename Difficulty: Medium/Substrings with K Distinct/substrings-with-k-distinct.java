@@ -26,19 +26,18 @@ class GfG {
 
 class Solution {
     
-    
-    
-    int kthMost(String s,int k)
+    int kthMost(String s, int k)
     {
         int l = 0;
         int r = 0;
+        int cnt = 0;
         int n = s.length();
-        int sum = 0;
         HashMap<Character, Integer> map = new HashMap<Character, Integer>();
         
         while(r < n)
         {
             map.put(s.charAt(r), map.getOrDefault(s.charAt(r),0) + 1);
+            
             if(map.size() > k)
             {
                 while(map.size() > k)
@@ -48,23 +47,21 @@ class Solution {
                     {
                         map.remove(s.charAt(l));
                     }
-                    
                     l++;
                 }
             }
             
                 int len = r - l + 1;
-                sum += len;
+                cnt+=len;
             r++;
         }
         
-        return sum;
+        return cnt;
     }
-    
     
     int countSubstr(String s, int k) {
         // your code here
-       int ans = kthMost(s,k) - kthMost(s,k - 1);
-       return ans;
+        
+        return kthMost(s,k) - kthMost(s,k-1);
     }
 }
