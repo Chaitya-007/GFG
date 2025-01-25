@@ -50,9 +50,13 @@ class Solution {
                     l++;
                 }
             }
-            
+            if(map.size() <= k)
+            {
                 int len = r - l + 1;
                 cnt+=len;
+                
+            }
+            
             r++;
         }
         
