@@ -33,54 +33,23 @@ class Solution
     {
         // code here
         List<Integer> list = new ArrayList<Integer>();
-        // int cnt = 0;
         
-        for(int i = 1; i <= Math.sqrt(N); i++)
+        for(int i = 2; i <= Math.sqrt(N); i++)
         {
             if(N%i == 0)
             {
                 list.add(i);
-                if(N/i != i)
+                while(N%i == 0)
                 {
-                    list.add(N/i);
+                    N = N/i;
                 }
             }
         }
         
-        List<Integer> result = new ArrayList<Integer>();
+        // Add this line
+        if(N != 1) list.add(N);
         
-        for(Integer val : list)
-        {
-            int cnt = 0;
-            for(int i = 1; i <= Math.sqrt(val); i++)
-            {
-                if(val%i == 0)
-                {
-                    cnt++;
-                    if(val/i != i)
-                    {
-                        cnt++;
-                    }
-                }
-                
-                if(cnt > 2)
-                {
-                    break;
-                }
-            }
-            
-            if(cnt == 2)
-            {
-                result.add(val);
-            }
-        }
-        
-        int[] arr = new int[result.size()];
-        for(int i = 0; i < arr.length; i++)
-        {
-            arr[i] = result.get(i);
-        }
-        
+        int[] arr = list.stream().mapToInt(Integer::intValue).toArray();
         return arr;
     }
 }
