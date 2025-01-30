@@ -36,44 +36,39 @@ class Solution {
 
     static List<Integer> findPrimeFactors(int N) {
         // code here
-        
+        // if(N < 2) return 0;
         List<Integer> list = new ArrayList<Integer>();
-        
         int[] prime = new int[N + 1];
-        Arrays.fill(prime,1);
-        
-        prime[0] = 0;
-        prime[1] = 0;
+        for(int i = 0; i <= N; i++)
+        {
+            prime[i] = i;
+        }
         
         for(int i = 2; i*i <= N; i++)
         {
-            if(prime[i] == 1)
+            if(prime[i] == i)
             {
-                for(int j = i*i; j <= N; j = j + i)
+                for(int j = i * i; j <= N; j = j + i)
                 {
-                    prime[j] = 0;
+                    // Very importatnt codition, it check whether
+                    if(prime[j] == j)
+                    {
+                    prime[j] = i;
+                        
+                    }
                 }
             }
         }
         
-        for(int i = 2; i * i <= N; i++)
+        // for(int val : prime) System.out.print(val + " ");
+        
+        while(N != 1)
         {
-            if(prime[i] == 1)
-            {
-                if(N%i == 0)
-                {
-                    
-                while(N%i == 0)
-                {
-                list.add(i);
-                    N = N/i;
-                }
-                }
-            }
+            list.add(prime[N]);
+            N = N/prime[N];
         }
-        
-        if(N != 1) list.add(N);
         
         return list;
+        
     }
 }
