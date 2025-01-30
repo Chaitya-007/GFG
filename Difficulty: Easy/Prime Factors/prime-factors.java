@@ -47,7 +47,7 @@ class Solution
         }
         
         // Add this line
-        if(N != 1) list.add(N);
+        if(N > 1) list.add(N);
         
         int[] arr = list.stream().mapToInt(Integer::intValue).toArray();
         return arr;
