@@ -28,33 +28,46 @@ class Solution {
     
     int kthMost(String s, int k)
     {
+        if(k < 0)
+        {
+            return 0;
+        }
+        
         int l = 0;
         int r = 0;
-        int cnt = 0;
         int n = s.length();
         HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        int cnt = 0;
         
-        while(r < n)
+        
+        while( r < n)
         {
-            map.put(s.charAt(r), map.getOrDefault(s.charAt(r),0) + 1);
+           
+            
+            map.put(s.charAt(r), map.getOrDefault(s.charAt(r),0)  + 1);
             
             if(map.size() > k)
             {
-                while(map.size() > k)
+                
+            
+            while(map.size() > k)
+            {
+                map.put(s.charAt(l), map.get(s.charAt(l)) - 1);
+                
+                if(map.get(s.charAt(l)) == 0)
                 {
-                    map.put(s.charAt(l), map.get(s.charAt(l)) - 1);
-                    if(map.get(s.charAt(l)) == 0)
-                    {
-                        map.remove(s.charAt(l));
-                    }
-                    l++;
+                    map.remove(s.charAt(l));
                 }
+                
+                l++;
             }
+            
+            }
+            
             if(map.size() <= k)
             {
                 int len = r - l + 1;
-                cnt+=len;
-                
+                cnt += len;
             }
             
             r++;
