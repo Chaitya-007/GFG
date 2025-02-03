@@ -12,20 +12,13 @@ import java.math.BigInteger;
 
 class Solution{
     
-    //Function to return sum of count of set bits in the integers from 1 to n.
-    
-    public static int getNearestPowerOf2(int n)
+    public static int nearestPower(int num)
     {
-        // int power = Math.floor()
-        int x = 0;
-        while((1<<x) <= n)
-        {
-            x++;
-        }
-        
-        return x - 1;
+        int pow = (int)(Math.log(num)/Math.log(2));
+        return pow;
     }
     
+    //Function to return sum of count of set bits in the integers from 1 to n.
     public static int countSetBits(int n){
     
         // Your code here
@@ -33,10 +26,11 @@ class Solution{
         {
             return 0;
         }
-        int x = getNearestPowerOf2(n);
-        int stBitsBeforex = (1<<(x-1)) * x;
-        int msbitsAfterx = (n - (1<<x) + 1);
-        return stBitsBeforex + msbitsAfterx + countSetBits(n - (1<<x));
+        int x = nearestPower(n);
+        int stBits = (1<<(x-1))*x;
+        int nextBits = (n - (1<<x) + 1);
+        return stBits + nextBits + countSetBits(n - (1<<x));
+        
         
     }
 }
