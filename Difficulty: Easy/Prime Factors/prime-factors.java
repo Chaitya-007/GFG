@@ -46,10 +46,19 @@ class Solution
             }
         }
         
-        // Add this line
         if(N > 1) list.add(N);
         
-        int[] arr = list.stream().mapToInt(Integer::intValue).toArray();
+        int sz = list.size();
+        
+        int[] arr = new int[sz];
+        int i = 0;
+        
+        for(Integer val : list)
+        {
+            arr[i] = val;
+            i++;
+        }
+        
         return arr;
     }
 }
