@@ -47,33 +47,53 @@ class MyQueue {
 
     int front, rear;
 	int arr[] = new int[100005];
+	int currSize = 0;
 
     MyQueue()
 	{
 		front=0;
 		rear=0;
+		currSize = 0;
 	}
 	
 	//Function to push an element x in a queue.
 	void push(int x)
 	{
 	    // Your code here
+	    if(currSize == 100005) 
+	    {
+	        System.out.println("Queue is full");
+	        return;
+	    }
+	    
 	    arr[rear] = x;
-	    rear++;
+	    currSize++;
+	    rear = (rear + 1)%100005;
 	} 
 
     //Function to pop an element from queue and return that element.
 	int pop()
 	{
 		// Your code here
-		if(front == rear)
+		
+		if(currSize == 0)
 		{
 		    return -1;
 		}
 		
-		int x = arr[front];
-		front++;
-		return x;
+		if(currSize == 1)
+		{
+		    int element = arr[front];
+		    front = 0;
+		    rear = 0;
+		    currSize--;
+		    return element;
+		}
+		
+		int element = arr[front];
+		front = (front + 1)%100005;
+		    currSize--;
+		return element;
 	} 
 }
 
