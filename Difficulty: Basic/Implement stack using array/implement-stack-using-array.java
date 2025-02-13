@@ -51,9 +51,14 @@ class MyStack {
 
     public void push(int x) {
         // Your Code
+        if(top == 999)
+        {
+            System.out.println("Stack is full");
+            return;
+        }
+        
         top++;
         arr[top] = x;
-        
     }
 
     public int pop() {
@@ -63,8 +68,8 @@ class MyStack {
             return -1;
         }
         
-        int x = arr[top];
+        int element = arr[top];
         top--;
-        return x;
+        return element;
     }
 }
