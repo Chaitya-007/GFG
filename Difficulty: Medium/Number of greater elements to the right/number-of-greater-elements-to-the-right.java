@@ -38,25 +38,40 @@ System.out.println("~");
 class Solution {
   public static int[] count_NGEs(int N, int arr[], int queries, int indices[]) {
     // code here
-    int[] res = new int[queries];
-    int len = 0;
+    Stack<Integer> asc = new Stack<>();
+    Stack<Integer> dsc = new Stack<>();
+    int[] count = new int[N];
+    int[] ans = new int[queries];
     
-    for(int ind : indices)
-    {
-        int cnt = 0;
-        for(int i = ind + 1; i < N; i++)
+        for(int i = N - 1; i >= 0; i--)
         {
-            if(arr[ind] < arr[i])
+            while(!asc.isEmpty() && arr[i] >= asc.peek())
             {
-                cnt++;
+                dsc.push(asc.peek());
+                asc.pop();
+            }
+            
+            dsc.push(arr[i]);
+            
+            count[i] = asc.size();
+            
+            while(!dsc.isEmpty())
+            {
+                asc.push(dsc.peek());
+                dsc.pop();
             }
         }
         
-        res[len] = cnt;
-        len++;
-    }
-    
-    return res;
+        int i = 0;
+        
+        for(int val : indices)
+        {
+            ans[i] = count[val];
+            i++;
+        }
+        
+        return ans;
+        
      
   }
 }
