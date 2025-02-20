@@ -30,12 +30,15 @@ System.out.println("~");
 class Solution {
     static String postToPre(String post_exp) {
         // code here
-        Stack<String> st = new Stack<String>();
+        
+        Stack<String> st = new Stack<>();
+        StringBuilder sb = new StringBuilder("");
+        
         for(char ch : post_exp.toCharArray())
         {
-            if ( ('A' <= ch && ch <= 'Z') || ('a' <= ch && ch <= 'z') || ('0' <= ch && ch <= '9') )
+            if( ('A' <= ch && ch <= 'Z') || ('a' <= ch && ch <= 'z') || ('0' <= ch && ch <= '9'))
             {
-                StringBuilder sb = new StringBuilder("");
+                sb.setLength(0);
                 sb.append(ch);
                 st.push(sb.toString());
             }
@@ -45,15 +48,15 @@ class Solution {
                 st.pop();
                 StringBuilder t2 = new StringBuilder(st.peek());
                 st.pop();
-                
-                StringBuilder res = new StringBuilder("");
-                res.append(ch);
-                res.append(t2.toString());
-                res.append(t1.toString());
-                st.push(res.toString());
+                sb.setLength(0);
+                sb.append(ch);
+                sb.append(t2.toString());
+                sb.append(t1.toString());
+                st.push(sb.toString());
             }
         }
         
         return st.peek();
+       
     }
 }
