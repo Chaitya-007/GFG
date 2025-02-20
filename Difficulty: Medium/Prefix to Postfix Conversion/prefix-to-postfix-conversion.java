@@ -30,17 +30,18 @@ System.out.println("~");
 class Solution {
     static String preToPost(String pre_exp) {
         // code here
-        Stack<String> st = new Stack<String>();
         
         int n = pre_exp.length();
+        Stack<String> st = new Stack<>();
+        StringBuilder sb = new StringBuilder("");
         
-        for(int i = n - 1; i >= 0; i--)
+        for(int i = n -1; i >= 0; i--)
         {
             char ch = pre_exp.charAt(i);
             
-            if ( ('A' <= ch && ch <= 'Z') || ('a' <= ch && ch <= 'z') || ('0' <= ch && ch <= '9') )
+            if(('A' <= ch && ch <= 'Z') || ('a' <= ch && ch <= 'z') || ('0' <= ch && ch <= '9'))
             {
-                StringBuilder sb = new StringBuilder("");
+                sb.setLength(0);
                 sb.append(ch);
                 st.push(sb.toString());
             }
@@ -50,8 +51,11 @@ class Solution {
                 st.pop();
                 StringBuilder t2 = new StringBuilder(st.peek());
                 st.pop();
-                StringBuilder res = new StringBuilder(t1.toString() + t2.toString() + ch);
-                st.push(res.toString());
+                sb.setLength(0);
+                sb.append(t1.toString());
+                sb.append(t2.toString());
+                sb.append(ch);
+                st.push(sb.toString());
             }
         }
         
