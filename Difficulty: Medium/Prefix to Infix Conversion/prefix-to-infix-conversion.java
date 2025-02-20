@@ -30,8 +30,11 @@ System.out.println("~");
 class Solution {
     static String preToInfix(String pre_exp) {
         // code here
+        
+        Stack<String> st = new Stack<>();
+         StringBuilder sb = new StringBuilder("");
+        
         int n = pre_exp.length();
-        Stack<String> st = new Stack<String>();
         
         for(int i = n - 1; i >= 0; i--)
         {
@@ -39,23 +42,24 @@ class Solution {
             
             if ( ('A' <= ch && ch <= 'Z') || ('a' <= ch && ch <= 'z') || ('0' <= ch && ch <= '9') )
             {
-             StringBuilder sb = new StringBuilder("");
-             sb.append(ch);
-             st.push(sb.toString());
+                sb.setLength(0);
+                sb.append(ch);
+                st.push(sb.toString());
             }
             else
             {
-                StringBuilder res = new StringBuilder("");
                 StringBuilder t1 = new StringBuilder(st.peek());
                 st.pop();
                 StringBuilder t2 = new StringBuilder(st.peek());
                 st.pop();
-                res.append("(");
-                res.append(t1.toString());
-                res.append(ch);
-                res.append(t2.toString());
-                res.append(")");
-                st.push(res.toString());
+                
+                sb.setLength(0);
+                sb.append('(');
+                sb.append(t1.toString());
+                sb.append(ch);
+                sb.append(t2.toString());
+                sb.append(')');
+                st.push(sb.toString());
             }
         }
         
