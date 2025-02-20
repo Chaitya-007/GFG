@@ -25,16 +25,14 @@ class Solution {
     {
         if(ch == '^') return 3;
         else if(ch == '*' || ch == '/') return 2;
-        else if(ch == '-' || ch == '+') return 1;
+        else if(ch == '+' || ch == '-') return 1;
         return -1;
     }
-    
     
     public static String infixToPostfix(String s) {
         // Your code here
         
-        int n = s.length();
-        Stack<Character> st = new Stack<Character>();
+        Stack<Character> st = new Stack<>();
         StringBuilder sb = new StringBuilder("");
         
         for(char ch : s.toCharArray())
@@ -76,5 +74,6 @@ class Solution {
         }
         
         return sb.toString();
+        
     }
 }
