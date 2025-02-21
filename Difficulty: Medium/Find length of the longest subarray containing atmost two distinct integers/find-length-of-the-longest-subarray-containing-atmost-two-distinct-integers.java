@@ -47,6 +47,8 @@ class Solution {
     public static int totalElements(Integer[] arr) {
         // code here
         
+        // T.C -> O(N*2)*O(1)
+        // S.C -> O(N)
         int n = arr.length;
         
         int maxlen = 0;
