@@ -46,26 +46,30 @@ class GFG {
 class Solution {
     public static int totalElements(Integer[] arr) {
         // code here
+        
         int n = arr.length;
-        int maxLen = 0;
+        
+        int maxlen = 0;
         
         for(int i = 0; i < n; i++)
         {
-        HashSet<Integer> hset = new HashSet<Integer>();
-         for(int j = i; j < n; j++)
-         {
-             hset.add(arr[j]);
-             if(hset.size() > 2)
-             {
-                 break;
-             }
-             else
-             {
-                 int len = j - i + 1;
-                 maxLen = Math.max(maxLen,len);
-             }
-         }
+            HashSet<Integer> set = new HashSet<Integer>();
+            
+            for(int j = i; j < n; j++)
+            {
+                set.add(arr[j]);
+                if(set.size() > 2)
+                {
+                    break;
+                }
+                else
+                {
+                    int len = j - i + 1;
+                    maxlen = Math.max(len,maxlen);
+                }
+            }
         }
-        return maxLen;
+        
+        return maxlen;
     }
 }
