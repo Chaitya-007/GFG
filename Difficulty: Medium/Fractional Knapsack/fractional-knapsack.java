@@ -78,10 +78,10 @@ class Solution {
         Comparator<Pair<Integer, Integer> > comparator = (p1,p2) ->
         {
             
-            double r1 = (double)p2.getValue()/ p2.getKey();
-            double r2 = (double)p1.getValue()/ p1.getKey();
+            double r1 = (double)p1.getValue()/ p1.getKey();
+            double r2 = (double)p2.getValue()/ p2.getKey();
             
-            return Double.compare(r1, r2);
+            return Double.compare(r2, r1);
 
             // Returns negative if ratio1 < ratio2
             // Returns 0 if ratio1 == ratio2
