@@ -46,6 +46,7 @@ class Solution{
         {
             if(map.containsKey(pages[i]))
             {
+                map.put(pages[i],i);
             }
             else
             {
@@ -56,20 +57,36 @@ class Solution{
                 else
                 {
                     
-                int ind = i - 1;
-                HashSet<Integer> hset = new HashSet<Integer>();
-                while(ind >= 0 && hset.size() != C)
+                // int ind = i - 1;
+                // HashSet<Integer> hset = new HashSet<Integer>();
+                // while(ind >= 0 && hset.size() != C)
+                // {
+                //     hset.add(pages[ind]);
+                //     ind--;
+                // }
+                
+                // ind++;
+                
+                // int ele = pages[ind];
+                // map.remove(ele);
+                // map.put(pages[i],i);
+                
+                int mino = N;
+                int ele = -1;
+                for(Map.Entry<Integer, Integer> e : map.entrySet())
                 {
-                    hset.add(pages[ind]);
-                    ind--;
+                    if(mino > e.getValue())
+                    {
+                        ele = e.getKey();
+                        mino = e.getValue();
+                    }
                 }
                 
-                ind++;
-                
-                int ele = pages[ind];
                 map.remove(ele);
                 map.put(pages[i],i);
+                
                 }
+                
                 pf++;
                 
             }
