@@ -46,31 +46,64 @@ class GfG {
 
 class Pair<K, V>
 {
-    private K key;
-    private V value;
+    private K profit;
+    private V dedline;
     
-    Pair(K key, V value)
+    Pair(K profit, V dedline)
     {
-        this.key = key;
-        this.value = value;
+        this.profit = profit;
+        this.dedline = dedline;
     }
     
-    public K getKey()
+    public K getProfit()
     {
-        return key;
+        return profit;
     }
     
-    public V getValue()
+    public V getDeadline()
     {
-        return value;
+        return dedline;
     }
 }
 
+
+class Disjoint
+{
+    int[] parent;
+    
+    public Disjoint(int n)
+    {
+        parent = new int[n+1];
+        for(int i = 0; i <= n; i++)
+        {
+            parent[i] = i;
+        }
+    }
+    
+    public int findPar(int x)
+    {
+        if(x == parent[x])
+        {
+            return x;
+        }
+        
+        return parent[x] = findPar(parent[x]);
+    }
+    
+    public void union(int x, int y)
+    {
+        parent[x] = y;
+    }
+    
+}
 
 class Solution {
 
     public ArrayList<Integer> JobSequencing(int[] id, int[] deadline, int[] profit) {
         // code here..
+        
+        // T.C -> o(NlogN) + O(N * maxDeadline)
+        // S.C -> O(N)
         
         List<Pair<Integer, Integer> > list = new ArrayList<>();
         int n = id.length;
@@ -82,17 +115,20 @@ class Solution {
             maxo = Math.max(maxo,val);
         }
         
-        int[] res = new int[maxo+1];
-        Arrays.fill(res,0);
+        // int[] res = new int[maxo+1];
+        // Arrays.fill(res,0);
+        
+        Disjoint ds = new Disjoint(maxo);
+        
         
         for(int i = 0; i < n; i++)
         {
-            list.add(new Pair<>(deadline[i],profit[i]));
+            list.add(new Pair<>(profit[i],deadline[i]));
         }
         
         Comparator<Pair<Integer, Integer>> comp = (p1,p2) -> 
         {
-          return Integer.compare(p1.getValue(), p2.getValue());  
+          return Integer.compare(p2.getProfit(), p1.getProfit());  
         };
         
         Collections.sort(list,comp);
@@ -100,21 +136,38 @@ class Solution {
         int cnt = 0;
         int sum = 0;
         
-        for(int i = n - 1; i >= 0; i--)
+        // for(int i = n - 1; i >= 0; i--)
+        // {
+        //     int pf = list.get(i).getValue();
+        //     int dd = list.get(i).getKey();
+            
+        //     while(dd != 0 && res[dd] != 0)
+        //     {
+        //         dd--;
+        //     }
+            
+        //     if(dd != 0) 
+        //     {
+        //         cnt++;
+        //         res[dd] = pf;
+        //         sum += pf;
+        //     }
+        // }
+        
+        
+        for(int i = 0; i < n; i++)
         {
-            int pf = list.get(i).getValue();
-            int dd = list.get(i).getKey();
+            int dd = list.get(i).getDeadline();
+            int pf = list.get(i).getProfit();
             
-            while(dd != 0 && res[dd] != 0)
-            {
-                dd--;
-            }
+            int availableSlot = ds.findPar(dd);
             
-            if(dd != 0) 
+            if(availableSlot > 0)
             {
                 cnt++;
-                res[dd] = pf;
                 sum += pf;
+                
+                ds.union(availableSlot, ds.findPar(availableSlot - 1));
             }
         }
         
