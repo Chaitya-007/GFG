@@ -1,19 +1,18 @@
 //{ Driver Code Starts
 // Initial Template for Java
-import java.util.*;
-import java.lang.*;
 import java.io.*;
+import java.lang.*;
+import java.util.*;
+
 class GFG {
     public static void main(String[] args) throws IOException {
-        BufferedReader br =
-            new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int T = Integer.parseInt(br.readLine().trim());
         while (T-- > 0) {
             String[] s = br.readLine().trim().split(" ");
             int V = Integer.parseInt(s[0]);
             int E = Integer.parseInt(s[1]);
-            ArrayList<ArrayList<Integer>> adj =
-                new ArrayList<ArrayList<Integer>>();
+            ArrayList<ArrayList<Integer>> adj = new ArrayList<ArrayList<Integer>>();
             for (int i = 0; i < V; i++) adj.add(new ArrayList<Integer>());
             for (int i = 0; i < E; i++) {
                 String[] S = br.readLine().trim().split(" ");
@@ -23,10 +22,11 @@ class GFG {
                 adj.get(v).add(u);
             }
             Solution obj = new Solution();
-            ArrayList<Integer> ans = obj.dfsOfGraph(V, adj);
-            for (int i = 0; i < ans.size(); i++)
-                System.out.print(ans.get(i) + " ");
+            ArrayList<Integer> ans = obj.dfsOfGraph(adj);
+            for (int i = 0; i < ans.size(); i++) System.out.print(ans.get(i) + " ");
             System.out.println();
+
+            System.out.println("~");
         }
     }
 }
@@ -35,29 +35,32 @@ class GFG {
 
 
 class Solution {
-    // Function to return a list containing the DFS traversal of the graph.
     
-    public void dfsFun(int node, int[] vis, ArrayList<Integer> dfs, ArrayList<ArrayList<Integer>> adj)
+    public void dfs(int node, boolean[] vis, ArrayList<Integer> list, ArrayList<ArrayList<Integer>> adj)
     {
-        vis[node] = 1;
-        dfs.add(node);
-        for(Integer it : adj.get(node))
+        vis[node] = true;
+        list.add(node);
+        
+        for(Integer val : adj.get(node))
         {
-            if(vis[it] != 1)
+            if(!vis[val])
             {
-                dfsFun(it,vis,dfs,adj);
+                dfs(val,vis,list,adj);
             }
         }
     }
     
-    public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
+    // Function to return a list containing the DFS traversal of the graph.
+    public ArrayList<Integer> dfsOfGraph(ArrayList<ArrayList<Integer>> adj) {
         // Code here
-        int[] vis = new int[V];
+        boolean[] vis = new boolean[adj.size()];
         
-        Arrays.fill(vis,0);
         
-        ArrayList<Integer> dfs = new ArrayList<Integer>();
-        dfsFun(0,vis,dfs,adj);
-        return dfs;
+        
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        
+         dfs(0,vis,list,adj);
+         
+         return list;
     }
 }
