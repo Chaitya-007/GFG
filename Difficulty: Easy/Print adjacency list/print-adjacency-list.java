@@ -1,5 +1,5 @@
 //{ Driver Code Starts
-//Initial Template for Java
+// Initial Template for Java
 
 import java.io.*;
 import java.util.*;
@@ -7,7 +7,6 @@ import java.util.*;
 class GFG {
     public static void main(String args[]) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        PrintWriter out = new PrintWriter(System.out);
         int t = Integer.parseInt(in.readLine());
         while (t-- > 0) {
             String s[] = in.readLine().trim().split(" ");
@@ -19,41 +18,65 @@ class GFG {
                 edges[i][0] = Integer.parseInt(s[0]);
                 edges[i][1] = Integer.parseInt(s[1]);
             }
-            Solution ob = new Solution();
-            List<List<Integer>> A = ob.printGraph(n, edges);
-            for (var i : A) {
-                Collections.sort(i);
-                for (int j : i) {
-                    out.print(j + " ");
+            Solution obj = new Solution();
+            List<List<Integer>> adj = obj.printGraph(n, edges);
+            boolean empty = true;
+            for (int i = 0; i < n; i++) {
+                if (adj.get(i).isEmpty()) {
+                    continue;
                 }
-                out.println();
+                empty = false;
+                break;
             }
+
+            if (empty) {
+                System.out.println("[]");
+                // System.out.println("~");
+                continue;
+            }
+
+            for (int i = 0; i < n; i++) {
+                Set<Integer> st =
+                    new TreeSet<>(adj.get(i)); // TreeSet to ensure ordering
+                System.out.print("[");
+
+                Iterator<Integer> it = st.iterator();
+                while (it.hasNext()) {
+                    int value = it.next();
+                    System.out.print(value);
+                    if (it.hasNext()) {
+                        System.out.print(" ");
+                    }
+                }
+                System.out.println("]");
+            }
+            // System.out.println("~");
         }
-        out.close();
     }
 }
 
 // } Driver Code Ends
 
 
-//User function Template for Java
+// User function Template for Java
 class Solution {
     public List<List<Integer>> printGraph(int V, int edges[][]) {
-        List<List<Integer>> adj = new ArrayList<>();
+        List<List<Integer>> list = new ArrayList<>();
         
         for(int i = 0; i < V; i++)
         {
-            adj.add(new ArrayList<>());
+            list.add(new ArrayList<Integer>());
         }
         
         for(int i = 0; i < edges.length; i++)
         {
             int u = edges[i][0];
             int v = edges[i][1];
-            adj.get(u).add(v);
-            adj.get(v).add(u);
+            
+            list.get(u).add(v);
+            list.get(v).add(u);
         }
         
-        return adj;
+        return list;
     }
 }
