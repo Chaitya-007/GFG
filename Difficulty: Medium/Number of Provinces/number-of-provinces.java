@@ -23,7 +23,9 @@ class GFG {
 
             Solution ob = new Solution();
             System.out.println(ob.numProvinces(adj,V));
-        }
+        
+System.out.println("~");
+}
     }
 }
 // } Driver Code Ends
@@ -33,55 +35,70 @@ class GFG {
 
 class Solution {
     
-    public static void dfs(int node, int[] vis, ArrayList<ArrayList<Integer>> adjLs)
+    public static void bfs(int node,List<List<Integer>> list,boolean[] vis)
     {
-        vis[node] = 1;
+        Queue<Integer> q = new LinkedList<>();
         
-        for(Integer it : adjLs.get(node))
+        q.offer(node);
+        vis[node] = true;
+        
+        while(!q.isEmpty())
         {
-            if(vis[it] != 1)
+            int getNode = q.peek();
+            q.poll();
+            
+            for(Integer val : list.get(getNode))
             {
-                dfs(it,vis,adjLs);
+                if(!vis[val])
+                {
+                    vis[val] = true;
+                    q.offer(val);
+                }
             }
+            
         }
         
     }
     
     static int numProvinces(ArrayList<ArrayList<Integer>> adj, int V) {
         // code here
-        ArrayList<ArrayList<Integer>> adjLs = new ArrayList<>();
+        List<List<Integer>> list = new ArrayList<>();
+        
         for(int i = 0; i <= V; i++)
         {
-            adjLs.add(new ArrayList<Integer>());
+            list.add(new ArrayList<Integer>());
         }
         
-        for(int i = 0; i < adj.size(); i++)
+       
+        
+        for(int i = 0; i < V; i++)
         {
-            for(int j = 0; j < adj.get(i).size(); j++)
+            for(int j = 0; j < V; j++)
             {
                 if(i != j && adj.get(i).get(j) == 1)
                 {
                     int u = i + 1;
                     int v = j + 1;
-                    adjLs.get(u).add(v);
-                    adjLs.get(v).add(u);
+                    list.get(u).add(v);
+                    list.get(v).add(u);
                 }
             }
         }
         
-        int[] vis = new int[V + 1];
-        Arrays.fill(vis,0);
+        boolean[] vis = new boolean[V+1];
+        
         int cnt = 0;
         
-        for(int node = 1; node <= V; node++)
+        for(int i = 1; i <= V; i++)
         {
-            if(vis[node] != 1)
+            if(!vis[i])
             {
-                dfs(node,vis,adjLs);
                 cnt++;
+                bfs(i,list,vis);
             }
         }
         
         return cnt;
+        
     }
 };
