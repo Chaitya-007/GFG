@@ -88,6 +88,28 @@ class Solution {
         return false;
     }
     
+    public boolean dfs(int node,int parent, boolean[] vis, ArrayList<ArrayList<Integer>> adj)
+    {
+        vis[node] = true;
+        
+        for(Integer it : adj.get(node))
+        {
+            if(!vis[it])
+            {
+                if(dfs(it,node,vis,adj))
+                {
+                    return true;
+                }
+            }
+            else if(parent != it)
+            {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
     
     public boolean isCycle(ArrayList<ArrayList<Integer>> adj) {
         // Code here
@@ -99,7 +121,8 @@ class Solution {
         {
             if(!vis[i])
             {
-                if(bfs(i,adj,vis)) return true;
+                // if(bfs(i,adj,vis)) return true;
+                if(dfs(i,-1,vis,adj)) return true;
             }
         }
         
