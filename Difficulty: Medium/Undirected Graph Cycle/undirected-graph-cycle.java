@@ -1,84 +1,51 @@
 //{ Driver Code Starts
+// Initial Template for Java
 import java.io.*;
-import java.lang.*;
 import java.util.*;
 
 class GFG {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int T = Integer.parseInt(br.readLine().trim());
-        while (T-- > 0) {
-            String[] s = br.readLine().trim().split(" ");
-            int V = Integer.parseInt(s[0]);
-            int E = Integer.parseInt(s[1]);
-            ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
-            for (int i = 0; i < V; i++) adj.add(i, new ArrayList<Integer>());
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int tc = sc.nextInt();
+        while (tc-- > 0) {
+            int V = sc.nextInt();
+            int E = sc.nextInt();
+            int[][] edges = new int[E][2];
             for (int i = 0; i < E; i++) {
-                String[] S = br.readLine().trim().split(" ");
-                int u = Integer.parseInt(S[0]);
-                int v = Integer.parseInt(S[1]);
-                adj.get(u).add(v);
-                adj.get(v).add(u);
+                edges[i][0] = sc.nextInt();
+                edges[i][1] = sc.nextInt();
             }
-            Solution obj = new Solution();
-            boolean ans = obj.isCycle(adj);
-            if (ans)
-                System.out.println("1");
-            else
-                System.out.println("0");
 
+            Solution obj = new Solution();
+            boolean ans = obj.isCycle(V, edges);
+            System.out.println(ans ? "true" : "false");
             System.out.println("~");
         }
+        sc.close();
     }
 }
+
 // } Driver Code Ends
 
-class Pair
-{
-    int node;
-    int parent;
-    
-    public Pair(int node_, int parent_)
-    {
-        this.node = node_;
-        this.parent = parent_;
-    }
-    
-    public int getNode()
-    {
-        return node;
-    }
-    
-    public int getParent()
-    {
-        return parent;
-    }
-}
 
 class Solution {
-    // Function to detect cycle in an undirected graph.
     
-    public boolean bfs(int node, ArrayList<ArrayList<Integer>> adj, boolean[] vis)
+    public boolean dfs(int node, int parent, List<List<Integer>> adj, boolean[] vis)
     {
-        Queue<Pair> q = new LinkedList<>();
-        
-        q.offer(new Pair(node,-1));
         vis[node] = true;
         
-        while(!q.isEmpty())
+        for(Integer adjNode : adj.get(node))
         {
-            int element = q.peek().getNode();
-            int parent = q.peek().getParent();
-            q.poll();
-            
-            for(Integer val : adj.get(element))
+            if(!vis[adjNode])
             {
-                if(!vis[val])
+                if(dfs(adjNode,node,adj,vis))
                 {
-                    vis[val] = true;
-                    q.offer(new Pair(val,element));
+                    return true;
                 }
-                else if(val != parent)
+            }
+            else
+            {
+                if(adjNode != parent)
                 {
                     return true;
                 }
@@ -88,41 +55,29 @@ class Solution {
         return false;
     }
     
-    public boolean dfs(int node,int parent, boolean[] vis, ArrayList<ArrayList<Integer>> adj)
-    {
-        vis[node] = true;
-        
-        for(Integer it : adj.get(node))
-        {
-            if(!vis[it])
-            {
-                if(dfs(it,node,vis,adj))
-                {
-                    return true;
-                }
-            }
-            else if(parent != it)
-            {
-                return true;
-            }
-        }
-        
-        return false;
-    }
-    
-    
-    public boolean isCycle(ArrayList<ArrayList<Integer>> adj) {
+    public boolean isCycle(int V, int[][] edges) {
         // Code here
+        List<List<Integer>> adj = new ArrayList<>();
+        for(int i = 0; i < V; i++)
+        {
+            adj.add(new ArrayList<>());
+        }
         
-        int v = adj.size();
-        boolean[] vis = new boolean[v];
+        for(int i = 0; i < edges.length; i++)
+        {
+            int u = edges[i][0];
+            int v = edges[i][1];
+            adj.get(u).add(v);
+            adj.get(v).add(u);
+        }
         
-        for(int i = 0; i < v; i++)
+        boolean[] vis = new boolean[V];
+        
+        for(int i = 0; i < V; i++)
         {
             if(!vis[i])
             {
-                // if(bfs(i,adj,vis)) return true;
-                if(dfs(i,-1,vis,adj)) return true;
+                if(dfs(i,-1,adj,vis)) return true;
             }
         }
         
