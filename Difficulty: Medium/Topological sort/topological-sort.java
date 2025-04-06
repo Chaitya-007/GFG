@@ -70,10 +70,51 @@ class Solution {
         return;
     }
     
+    
+    
+    
     public static ArrayList<Integer> topoSort(int V, int[][] edges) {
         // code here
         
+        // DFS
+        // List<List<Integer>> adj = new ArrayList<>();
+        // for(int i = 0; i < V; i++)
+        // {
+        //     adj.add(new ArrayList<>());
+        // }
+        
+        // for(int i = 0; i < edges.length; i++)
+        // {
+        //     int u = edges[i][0];
+        //     int v = edges[i][1];
+        //     adj.get(u).add(v);
+        // }
+        
+        // boolean[] vis = new boolean[V];
+        // Stack<Integer> st = new Stack<>();
+        
+        // for(int i = 0; i < V; i++)
+        // {
+        //     if(!vis[i])
+        //     {
+        //         dfs(i,vis,adj,st);
+        //     }
+        // }
+        
+        // ArrayList<Integer> ans = new ArrayList<>();
+        
+        // while(!st.isEmpty())
+        // {
+        //     ans.add(st.peek());
+        //     st.pop();
+        // }
+        
+        // return ans;
+        
+        
+        // BFS
         List<List<Integer>> adj = new ArrayList<>();
+        
         for(int i = 0; i < V; i++)
         {
             adj.add(new ArrayList<>());
@@ -86,26 +127,49 @@ class Solution {
             adj.get(u).add(v);
         }
         
-        boolean[] vis = new boolean[V];
-        Stack<Integer> st = new Stack<>();
+        ArrayList<Integer> result = new ArrayList<>();
+        int[] indegree = new int[V];
         
-        for(int i = 0; i < V; i++)
+        for(int i = 0; i < adj.size(); i++)
         {
-            if(!vis[i])
+            for(Integer adjNode : adj.get(i))
             {
-                dfs(i,vis,adj,st);
+                indegree[adjNode] = indegree[adjNode] + 1;
             }
         }
         
-        ArrayList<Integer> ans = new ArrayList<>();
+        Queue<Integer> q = new LinkedList<>();
         
-        while(!st.isEmpty())
+        for(int i = 0; i < V; i++)
         {
-            ans.add(st.peek());
-            st.pop();
+            if(indegree[i] == 0)
+            {
+                q.offer(i);
+            }
         }
         
-        return ans;
+        while(!q.isEmpty())
+        {
+            int node = q.peek();
+            result.add(node);
+            q.poll();
+            
+            for(Integer adjNode : adj.get(node))
+            {
+                if(indegree[adjNode] > 0)
+                {
+                    indegree[adjNode] -= 1;
+                    if(indegree[adjNode] == 0)
+                    {
+                        q.offer(adjNode);
+                    }
+                }
+            }
+        }
+        
+        return result;
+        
+        
         
     }
 }
