@@ -80,6 +80,21 @@ class NodeAndDis
 
 
 class Solution {
+    
+    public void dfs(int node,List<List<Pair>> adj,boolean[] vis,Stack<Integer> st)
+    {
+        vis[node] = true;
+        
+        for(Pair adjNode : adj.get(node))
+        {
+            if(!vis[adjNode.getV()])
+            {
+                dfs(adjNode.getV(),adj,vis,st);
+            }
+        }
+        
+        st.push(node);
+    }
 
     public int[] shortestPath(int V, int E, int[][] edges) {
         // Code here
@@ -96,29 +111,43 @@ class Solution {
             adj.get(edges[i][0]).add(new Pair(edges[i][1],edges[i][2]));
         }
         
+        // TopoSort
+        boolean[] vis = new boolean[V];
+        Stack<Integer> st = new Stack<Integer>();
+        
+        for(int i = 0; i < V; i++)
+        {
+            if(!vis[i])
+            {
+                dfs(i,adj,vis,st);
+            }
+        }
+        
         int[] dis = new int[V];
         Arrays.fill(dis, Integer.MAX_VALUE);
         dis[0] = 0;
          
-        Queue<NodeAndDis> q = new LinkedList<>();
-        q.offer(new NodeAndDis(0,0));
+      
         
-        while(!q.isEmpty())
+        while(!st.isEmpty())
         {
-            int node = q.peek().getNode();
-            int distance = q.peek().getDis();
-            q.poll();
+            int node = st.peek();
+            st.pop();
             
+            if(dis[node] != Integer.MAX_VALUE)
+            {
+                
             for(Pair adjNode : adj.get(node))
             {
                 int adjv = adjNode.getV();
                 int adjw = adjNode.getW();
                 
-                if(dis[adjv] > (adjw + distance))
+                if(dis[adjv] > (adjw + dis[node]))
                 {
-                    dis[adjv] = adjw + distance;
-                    q.offer(new NodeAndDis(adjv,(adjw + distance)));
+                    dis[adjv] = adjw + dis[node];
                 }
+            }
+            
             }
         }
         
