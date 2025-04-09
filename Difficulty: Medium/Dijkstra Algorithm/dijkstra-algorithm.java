@@ -87,6 +87,24 @@ class Pair
     {
         return node;
     }
+    
+    // @Override
+    // public boolean equals(Object o)
+    // {
+    //     if(this == o) return true;
+        
+    //     if(o == null || getClass() != o.getClass()) return false;
+        
+    //     Pair p = (Pair)(o);
+        
+    //     return dis == p.dis && node == p.node;
+    // }
+    
+    // @Override
+    // public int hashCode()
+    // {
+    //     return Objects.hash(dis,node);
+    // }
 }
 
 
@@ -107,8 +125,9 @@ class Solution {
             
             return Integer.compare(p.getDis(),q.getDis());
         };
-        // Min heap
-        PriorityQueue<Pair> pq = new PriorityQueue<>(cmp);
+        
+        
+        TreeSet<Pair> set = new TreeSet<>(cmp);
         
         int v = adj.size();
     
@@ -117,13 +136,14 @@ class Solution {
         
         Arrays.fill(dis,Integer.MAX_VALUE);
         dis[src] = 0;
-        pq.offer(new Pair(0,src));
+        set.add(new Pair(0,src));
         
-        while(!pq.isEmpty())
+        while(!set.isEmpty())
         {
-            int node = pq.peek().getNode();
-            int distance = pq.peek().getDis();
-            pq.poll();
+            Pair p = set.pollFirst();
+            int node = p.getNode();
+            int distance = p.getDis();
+            
             
             for(iPair adjNode : adj.get(node))
             {
@@ -132,8 +152,13 @@ class Solution {
                 
                 if(distance + edgeWeight < dis[adjV])
                 {
+                    //  erase if exists
+                    if(dis[adjV] != Integer.MAX_VALUE)
+                    {
+                        set.remove(new Pair(dis[adjV],adjV));
+                    }
                     dis[adjV] = distance + edgeWeight;
-                    pq.offer(new Pair(dis[adjV],adjV));
+                    set.add(new Pair(dis[adjV],adjV));
                 }
             }
         }
