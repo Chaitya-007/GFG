@@ -38,44 +38,68 @@ public class Main {
 
 // User function Template for Java
 
-class obj
+
+class Disjoint
 {
-    int wt;
-    int node;
-    int parent;
+    List<Integer> size = new ArrayList<>();
+    List<Integer> parent = new ArrayList<>();
     
-    public obj(int w,int n,int p)
+    public Disjoint(int n)
     {
-        this.wt = w;
-        this.node = n;
-        this.parent = p;
+        for(int i = 0; i < n; i++)
+        {
+            size.add(1);
+            parent.add(i);
+        }
     }
     
-    public int getWt()
+    public int findUpar(int node)
     {
-        return wt;
+        if(node == parent.get(node))
+        {
+            return node;
+        }
+        
+        int updPar = findUpar(parent.get(node));
+        parent.set(node,updPar);
+        return updPar;
     }
     
-    public int getNode()
+    public void unionBySize(int u,int v)
     {
-        return node;
-    }
-    
-    public int getParent()
-    {
-        return parent;
+        int ulp_u = findUpar(u);
+        int ulp_v = findUpar(v);
+        
+        if(ulp_u == ulp_v) return;
+        if(size.get(ulp_u) < size.get(ulp_v))
+        {
+            parent.set(ulp_u,ulp_v);
+            size.set( ulp_v, size.get(ulp_v) + size.get(ulp_u) );
+        }
+        else
+        {
+            parent.set(ulp_v,ulp_u);
+            size.set( ulp_u, size.get(ulp_u) + size.get(ulp_v) );
+        }
     }
 }
 
-class Pair
+class CustomNode
 {
+    int u;
     int v;
     int w;
     
-    public Pair(int v,int w)
+    public CustomNode(int w,int u,int v)
     {
+        this.u = u;
         this.v = v;
         this.w = w;
+    }
+    
+    public int getU()
+    {
+        return u;
     }
     
     public int getV()
@@ -94,75 +118,45 @@ class Solution {
     static int spanningTree(int V, int E, List<List<int[]>> adj) {
         // Code Here.
         
+        Disjoint ds = new Disjoint(V);
+        int sum = 0;
+        List<CustomNode> list = new ArrayList<>();
         
-    //      System.out.println("Debug: adj size = " + adj.size());
-    // for(int i = 0; i < adj.size(); i++) {
-    //     System.out.println("Debug: adj[" + i + "] size = " + adj.get(i).size());
-    //     for(int j = 0; j < adj.get(i).size(); j++) {
-    //         int[] arr = adj.get(i).get(j);
-    //         System.out.print("Debug: adj[" + i + "][" + j + "] = [");
-    //         for(int k = 0; k < arr.length; k++) {
-    //             System.out.print(arr[k] + (k < arr.length - 1 ? ", " : ""));
-    //         }
-    //         System.out.println("]");
-    //     }
-    // }
-        
-        List<List<Pair>> adjList = new ArrayList<>();
-        
-        for(int i = 0; i < V; i++)
+        for(int u = 0; u < V; u++)
         {
-            adjList.add(new ArrayList<>());
-        }
-        
-        for (int u = 0; u < V; u++) {
-            for (int[] edge : adj.get(u)) {
+            for(int[] edge : adj.get(u))
+            {
                 int v = edge[0];
                 int w = edge[1];
-                adjList.get(u).add(new Pair(v, w));
-                adjList.get(v).add(new Pair(u, w)); // Assuming undirected graph
+                
+                list.add(new CustomNode(w,u,v));
             }
         }
         
-        Comparator<obj> cmp = (p,q) -> 
+        
+        Comparator<CustomNode> cmp = (p,q) -> 
         {
-            return Integer.compare(p.getWt(),q.getWt());
+          return Integer.compare(p.getW(),q.getW());  
         };
         
-        PriorityQueue<obj> pq = new PriorityQueue<>(cmp);
+        Collections.sort(list,cmp);
         
-        pq.offer(new obj(0,0,-1));
-        
-        int sum = 0;
-        
-        boolean[] vis = new boolean[V];
-        
-        while(!pq.isEmpty())
+        for(CustomNode p : list)
         {
-            int wt = pq.peek().getWt();
-            int node = pq.peek().getNode();
-            int parent = pq.peek().getParent();
-            pq.poll();
+            int u = p.getU();
+            int v = p.getV();
+            int w = p.getW();
             
-            if(vis[node]) continue;
-            
-            
-            // This is when I add it to mst
-            vis[node] = true;
-            sum += wt;
-            
-            for(Pair p : adjList.get(node))
+            if(ds.findUpar(u) == ds.findUpar(v))
             {
-                int adjV = p.getV();
-                int w = p.getW();
-                
-                if(!vis[adjV])
-                {
-                    pq.offer(new obj(w,adjV,node));
-                }
+                continue;
+            }
+            else 
+            {
+                ds.unionBySize(u,v);
+                sum += w;
             }
         }
-        
         
         return sum;
     }
